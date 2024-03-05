@@ -10,16 +10,12 @@ public class UserInterface {
 
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
 
-        String userInput;
+        String userInput = "";
+        System.out.println(adventure.roomNameAndDescription());
 
-        do {
-            System.out.println(adventure.roomNameAndDescription());
+        while (!userInput.equalsIgnoreCase("exit")){
             userInput = input.nextLine();
             adventure.movePlayer(userInput);
-        }while (!userInput.equalsIgnoreCase("exit"));
+        }
     }
-
-
-
-
 }

@@ -63,6 +63,7 @@ public class Adventure {
             case "north":
                 if (currentRoom.getN() != null) {
                     currentRoom = currentRoom.getN();
+                    System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
                 }
@@ -71,6 +72,7 @@ public class Adventure {
             case "east":
                 if (currentRoom.getE() != null) {
                     currentRoom = currentRoom.getE();
+                    System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
                 }
@@ -79,6 +81,7 @@ public class Adventure {
             case "west":
                 if (currentRoom.getW() != null) {
                     currentRoom = currentRoom.getW();
+                    System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
                 }
@@ -87,18 +90,28 @@ public class Adventure {
             case "south":
                 if (currentRoom.getS() != null) {
                     currentRoom = currentRoom.getS();
+                    System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
                 }
                 break;
 
             case "look":
-
+                System.out.println(roomNameAndDescription());
+                break;
+            case "help":
+                System.out.println("Enter north, east, south or west to navigate");
+                System.out.println("Enter \"look\" to get room information");
+                System.out.println("Enter \"exit\" to quit the game");
                 break;
 
             default:
-                System.out.println("Invalid user input. Please enter north, east, south or west");
-                break;
+                if(userInput.equalsIgnoreCase("exit")) {
+                    break;
+                }else {
+                    System.out.println("Invalid user input. Please enter north, east, south or west");
+                    break;
+                }
             }
 
 
