@@ -3,10 +3,10 @@ public class Rooms {
     //Declaring the room attributes
     private String name;
     private String description;
-    private Rooms n;
-    private Rooms e;
-    private Rooms s;
-    private Rooms w;
+    private Rooms northConnection;
+    private Rooms eastConnection;
+    private Rooms southConnection;
+    private Rooms westConnection;
 
 
     //Setting up the constructor for the rooms
@@ -14,10 +14,10 @@ public class Rooms {
         this.name = name;
         this.description = description;
 
-        this.n = null;
-        this.e = null;
-        this.s = null;
-        this.w = null;
+        northConnection = null;
+        eastConnection = null;
+        southConnection = null;
+        westConnection = null;
     }
 
     //Getter and setter methods
@@ -29,36 +29,36 @@ public class Rooms {
         return description;
     }
 
-    public Rooms getN() {
-        return n;
+    public Rooms getNorthConnection() {
+        return northConnection;
     }
 
-    public Rooms getE(){
-        return e;
+    public Rooms getEastConnection(){
+        return eastConnection;
     }
 
-    public Rooms getS(){
-        return s;
+    public Rooms getSouthConnection(){
+        return southConnection;
     }
 
-    public Rooms getW(){
-        return w;
+    public Rooms getWestConnection(){
+        return westConnection;
     }
 
-    public void setN(Rooms n){
-        this.n = n;
+    public void setNorthConnection(Rooms northConnection){
+        this.northConnection = northConnection;
     }
 
-    public void setE(Rooms e){
-        this.e = e;
+    public void setEastConnection(Rooms eastConnection){
+        this.eastConnection = eastConnection;
     }
 
-    public void setS(Rooms s){
-        this.s = s;
+    public void setSouthConnection(Rooms southConnection){
+        this.southConnection = southConnection;
     }
 
-    public void setW(Rooms w) {
-        this.w = w;
+    public void setWestConnection(Rooms westConnection) {
+        this.westConnection = westConnection;
     }
 
 

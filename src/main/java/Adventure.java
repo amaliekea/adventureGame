@@ -23,32 +23,32 @@ public class Adventure {
         room8 = new Rooms("\"Basement\": " , "Dark place where light is dim");
         room9 = new Rooms("\"Catacombs\": " , "Dark place where light is dim");
 
-        room1.setE(room2);
-        room1.setS(room4);
+        room1.setEastConnection(room2);
+        room1.setSouthConnection(room4);
 
-        room2.setE(room3);
-        room2.setW(room1);
+        room2.setEastConnection(room3);
+        room2.setWestConnection(room1);
 
-        room3.setS(room6);
-        room3.setW(room2);
+        room3.setSouthConnection(room6);
+        room3.setWestConnection(room2);
 
-        room4.setN(room1);
-        room4.setS(room7);
+        room4.setNorthConnection(room1);
+        room4.setSouthConnection(room7);
 
-        room5.setS(room8);
+        room5.setSouthConnection(room8);
 
-        room6.setS(room9);
-        room6.setN(room3);
+        room6.setSouthConnection(room9);
+        room6.setNorthConnection(room3);
 
-        room7.setN(room4);
-        room7.setE(room8);
+        room7.setNorthConnection(room4);
+        room7.setEastConnection(room8);
 
-        room8.setN(room5);
-        room8.setE(room9);
-        room8.setW(room7);
+        room8.setNorthConnection(room5);
+        room8.setEastConnection(room9);
+        room8.setWestConnection(room7);
 
-        room9.setN(room6);
-        room9.setW(room8);
+        room9.setNorthConnection(room6);
+        room9.setWestConnection(room8);
 
         currentRoom = room1;
     }
@@ -61,8 +61,8 @@ public class Adventure {
         switch (userInput) {
 
             case "north":
-                if (currentRoom.getN() != null) {
-                    currentRoom = currentRoom.getN();
+                if (currentRoom.getNorthConnection() != null) {
+                    currentRoom = currentRoom.getNorthConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
@@ -70,8 +70,8 @@ public class Adventure {
                 break;
 
             case "east":
-                if (currentRoom.getE() != null) {
-                    currentRoom = currentRoom.getE();
+                if (currentRoom.getEastConnection() != null) {
+                    currentRoom = currentRoom.getEastConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
@@ -79,8 +79,8 @@ public class Adventure {
                 break;
 
             case "west":
-                if (currentRoom.getW() != null) {
-                    currentRoom = currentRoom.getW();
+                if (currentRoom.getWestConnection() != null) {
+                    currentRoom = currentRoom.getWestConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
@@ -88,8 +88,8 @@ public class Adventure {
                 break;
 
             case "south":
-                if (currentRoom.getS() != null) {
-                    currentRoom = currentRoom.getS();
+                if (currentRoom.getSouthConnection() != null) {
+                    currentRoom = currentRoom.getSouthConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
                     System.out.println("Can't go this way...");
