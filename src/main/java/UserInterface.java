@@ -20,6 +20,7 @@ public class UserInterface {
             } else if (userInput == 1) {
                 System.out.println("Starting new game....\n");
                 startGame();
+                return;
             }
             System.out.println("Exiting....\n");
         }
