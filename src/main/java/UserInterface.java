@@ -34,17 +34,60 @@ public class UserInterface {
         String helpinfo = "Enter north, east, south or west to navigate" +
                 "\nEnter \"look\" to get room information" +
                 "\nEnter \"exit\" to quit the game";
-        String wayBlocked = "Can't go this way...";
         String exit = "Exiting game...";
-        String invalid = "Invalid user input. Please enter north, east, south or west";
 
         String userInput = "";
         System.out.println(adventure.roomNameAndDescription());
 
-        while (!userInput.equalsIgnoreCase("exit")){
+        while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
-            adventure.movePlayer(userInput, helpinfo, wayBlocked,
-                    exit, invalid);
+            userInput=parseInput(userInput);
+            if (userInput == null) {
+                System.out.println("Invalid user input. Please enter north, east, south or west...");
+            } else {
+                if (userInput.equalsIgnoreCase("help")) {
+                    System.out.println(helpinfo);
+                }
+                if (userInput.equalsIgnoreCase("exit")) {
+                    System.out.println("Exiting game...");
+                    return;
+                } else {
+                    String message = adventure.movePlayer(userInput);
+                    System.out.println(message);
+                }
+            }
         }
+    }
+    String parseInput(String userInput) {
+        System.out.println(userInput);
+        if (userInput.equalsIgnoreCase("exit")) {
+            return "exit";
+        }
+        if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")) {
+            return "look";
+        }
+        if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")){
+            return "help";
+        }
+        if (userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
+                || userInput.equalsIgnoreCase("go north")) {
+            return "n";
+        }
+        if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
+                || userInput.equalsIgnoreCase("go east")) {
+            return "e";
+        }
+        if ((userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
+                || userInput.equalsIgnoreCase("go west"))) {
+            return "w";
+        }
+        if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
+                || userInput.equalsIgnoreCase("go south")) {
+            return "s";
+        }
+        if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("help me") || userInput.equalsIgnoreCase("info") || userInput.equalsIgnoreCase("h")) {
+            return "help";
+        }
+        return "";
     }
 }

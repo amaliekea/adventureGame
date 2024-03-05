@@ -12,16 +12,16 @@ public class Adventure {
     private Rooms currentRoom;
 
     //Constructor is set to room1 for the starting point
-    public Adventure(){
-        room1 = new Rooms("\"Dungeon\": " , "You land in a desolate desert dungeon, with nothing in sight except two doors");
-        room2 = new Rooms("\"Prison\": " , "Iron bars that surround you, try to get out, there are two detours");
-        room3 = new Rooms("\"Cave\": " , "Open cave with animal life surrounding your feet, two possibilities");
-        room4 = new Rooms("\"Forest\": " , "Dry plain forest completely devoid of life, two doors");
-        room5 = new Rooms("\"Creek\": " , "Dense vegetation of alien coming up from the lake, there is only one way out");
-        room6 = new Rooms("\"Sprawling City\": " , "Poisonous animals living inside, except two roads");
-        room7 = new Rooms("\"Castle\": " , "Dark palace where light is dim");
-        room8 = new Rooms("\"Basement\": " , "Dark place with steep clips, rocks falling down");
-        room9 = new Rooms("\"Catacombs\": " , "Skulls buried all around you");
+    public Adventure() {
+        room1 = new Rooms("\"Dungeon\": ", "You land in a desolate desert dungeon, with nothing in sight except two doors");
+        room2 = new Rooms("\"Prison\": ", "Iron bars that surround you, try to get out, there are two detours");
+        room3 = new Rooms("\"Cave\": ", "Open cave with animal life surrounding your feet, two possibilities");
+        room4 = new Rooms("\"Forest\": ", "Dry plain forest completely devoid of life, two doors");
+        room5 = new Rooms("\"Creek\": ", "Dense vegetation of alien coming up from the lake, there is only one way out");
+        room6 = new Rooms("\"Sprawling City\": ", "Poisonous animals living inside, except two roads");
+        room7 = new Rooms("\"Castle\": ", "Dark palace where light is dim");
+        room8 = new Rooms("\"Basement\": ", "Dark place with steep clips, rocks falling down");
+        room9 = new Rooms("\"Catacombs\": ", "Skulls buried all around you");
 
         room1.setEastConnection(room2); //adgang fra 1
         room1.setSouthConnection(room4);
@@ -55,50 +55,41 @@ public class Adventure {
 
     //Metoden tager parameteren String userinput, som bruges til at tage brugerinput og skifte mellem hver case alt efter hvad brugeren indtaster.
 
-    public void movePlayer (String userInput, String helpInformation, String wayBlocked, String exit, String invalid) {
+    public String movePlayer(String userInput) {
+        String wayBlocked = "Can't go this way...";
 
 
-            if(userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
-                    || userInput.equalsIgnoreCase("go north")){
-                if (currentRoom.getNorthConnection() != null) {
-                    currentRoom = currentRoom.getNorthConnection();
-                    System.out.println(roomNameAndDescription());
-                } else {
-                    System.out.println(wayBlocked);
-                }
-            } else if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
-                    || userInput.equalsIgnoreCase("go east")){
-                if (currentRoom.getEastConnection() != null) {
-                    currentRoom = currentRoom.getEastConnection();
-                    System.out.println(roomNameAndDescription());
-                } else {
-                    System.out.println(wayBlocked);
-                }
-            } else if (userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
-                    || userInput.equalsIgnoreCase("go west")){
-                if (currentRoom.getWestConnection() != null) {
-                    currentRoom = currentRoom.getWestConnection();
-                    System.out.println(roomNameAndDescription());
-                } else {
-                    System.out.println(wayBlocked);
-                }
-            } else if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
-                    || userInput.equalsIgnoreCase("go south")){
-                if (currentRoom.getSouthConnection() != null) {
-                    currentRoom = currentRoom.getSouthConnection();
-                    System.out.println(roomNameAndDescription());
-                } else {
-                    System.out.println(wayBlocked);
-                }
-            } else if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")){
-                    System.out.println(roomNameAndDescription());
-            } else if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")){
-                    System.out.println(helpInformation);
-            } else if (userInput.equalsIgnoreCase("exit")) {
-                    System.out.println(exit);
+        if (userInput.equalsIgnoreCase("n")) {
+            if (currentRoom.getNorthConnection() != null) {
+                currentRoom = currentRoom.getNorthConnection();
+                return roomNameAndDescription();
             } else {
-                    System.out.println(invalid);
+                return wayBlocked;
             }
+        } else if (userInput.equalsIgnoreCase("e")) {
+            if (currentRoom.getEastConnection() != null) {
+                currentRoom = currentRoom.getEastConnection();
+                return roomNameAndDescription();
+            } else {
+                return wayBlocked;
+            }
+        } else if (userInput.equalsIgnoreCase("w")) {
+            if (currentRoom.getWestConnection() != null) {
+                currentRoom = currentRoom.getWestConnection();
+                return roomNameAndDescription();
+            } else {
+                return wayBlocked;
+            }
+        } else if (userInput.equalsIgnoreCase("s")) {
+            if (currentRoom.getSouthConnection() != null) {
+                currentRoom = currentRoom.getSouthConnection();
+                return roomNameAndDescription();
+            } else {
+                return wayBlocked;
+            }
+        } else if (userInput.equalsIgnoreCase("look")) {
+            return roomNameAndDescription(); //kan ikke håndteres i ui, da den retunerer roomnameand di
+        }
 
 //        switch (userInput) {
 //
@@ -156,8 +147,9 @@ public class Adventure {
 //                }
 //            }
 
-
+        return null;
     }
+
 
     public String roomNameAndDescription(){
         return currentRoom.getName() + currentRoom.getDescription();
