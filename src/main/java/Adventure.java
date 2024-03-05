@@ -23,7 +23,7 @@ public class Adventure {
         room8 = new Rooms("\"Basement\": " , "Dark place with steep clips, rocks falling down");
         room9 = new Rooms("\"Catacombs\": " , "Skulls buried all around you");
 
-        room1.setEastConnection(room2);
+        room1.setEastConnection(room2); //adgang fra 1
         room1.setSouthConnection(room4);
 
         room2.setEastConnection(room3);
