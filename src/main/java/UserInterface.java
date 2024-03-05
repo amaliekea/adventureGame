@@ -12,13 +12,16 @@ public class UserInterface {
         String helpinfo = "Enter north, east, south or west to navigate" +
                 "\nEnter \"look\" to get room information" +
                 "\nEnter \"exit\" to quit the game";
+        String wayBlocked = "Can't go this way...";
+        String exit = "Exiting game...";
+        String invalid = "Invalid user input. Please enter north, east, south or west";
         String userInput = "";
         System.out.println(adventure.roomNameAndDescription());
 
         while (!userInput.equalsIgnoreCase("exit")){
             userInput = input.nextLine();
-            adventure.movePlayer(userInput, helpinfo, "Can't go this way...",
-                    "Exiting game...", "Invalid user input. Please enter north, east, south or west");
+            adventure.movePlayer(userInput, helpinfo, wayBlocked,
+                    exit, invalid);
         }
     }
 }
