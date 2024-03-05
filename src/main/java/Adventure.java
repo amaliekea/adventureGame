@@ -63,24 +63,32 @@ public class Adventure {
             case "north":
                 if (currentRoom.getN() != null) {
                     currentRoom = currentRoom.getN();
+                } else {
+                    System.out.println("Can't go this way...");
                 }
                 break;
 
             case "east":
                 if (currentRoom.getE() != null) {
                     currentRoom = currentRoom.getE();
+                } else {
+                    System.out.println("Can't go this way...");
                 }
                 break;
 
             case "west":
                 if (currentRoom.getW() != null) {
                     currentRoom = currentRoom.getW();
+                } else {
+                    System.out.println("Can't go this way...");
                 }
                 break;
 
             case "south":
                 if (currentRoom.getS() != null) {
                     currentRoom = currentRoom.getS();
+                } else {
+                    System.out.println("Can't go this way...");
                 }
                 break;
 
