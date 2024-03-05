@@ -13,15 +13,15 @@ public class Adventure {
 
     //Constructor is set to room1 for the starting point
     public Adventure(){
-        room1 = new Rooms("\"Dungeon\": " , "Dark place where light is dim");
-        room2 = new Rooms("\"Prison\": " , "Dark place where light is dim");
-        room3 = new Rooms("\"Cave\": " , "Dark place where light is dim");
-        room4 = new Rooms("\"Forest\": " , "Dark place where light is dim");
-        room5 = new Rooms("\"Creek\": " , "Dark place where light is dim");
-        room6 = new Rooms("\"Sprawling City\": " , "Dark place where light is dim");
-        room7 = new Rooms("\"Castle\": " , "Dark place where light is dim");
-        room8 = new Rooms("\"Basement\": " , "Dark place where light is dim");
-        room9 = new Rooms("\"Catacombs\": " , "Dark place where light is dim");
+        room1 = new Rooms("\"Dungeon\": " , "You land in a desolate desert dungeon, with nothing in sight except two doors");
+        room2 = new Rooms("\"Prison\": " , "Iron bars that surround you, try to get out, there are two detours");
+        room3 = new Rooms("\"Cave\": " , "Open cave with animal life surrounding your feet, two possibilities");
+        room4 = new Rooms("\"Forest\": " , "Dry plain forest completely devoid of life, two doors");
+        room5 = new Rooms("\"Creek\": " , "Dense vegetation of alien coming up from the lake, there is only one way out");
+        room6 = new Rooms("\"Sprawling City\": " , "Poisonous animals living inside, except two roads");
+        room7 = new Rooms("\"Castle\": " , "Dark palace where light is dim");
+        room8 = new Rooms("\"Basement\": " , "Dark place with steep clips, rocks falling down");
+        room9 = new Rooms("\"Catacombs\": " , "Skulls buried all around you");
 
         room1.setEastConnection(room2);
         room1.setSouthConnection(room4);
