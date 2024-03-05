@@ -9,13 +9,16 @@ public class UserInterface {
     public void startGame(){
 
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
-
+        String helpinfo = "Enter north, east, south or west to navigate" +
+                "\nEnter \"look\" to get room information" +
+                "\nEnter \"exit\" to quit the game";
         String userInput = "";
         System.out.println(adventure.roomNameAndDescription());
 
         while (!userInput.equalsIgnoreCase("exit")){
             userInput = input.nextLine();
-            adventure.movePlayer(userInput);
+            adventure.movePlayer(userInput, helpinfo, "Can't go this way...",
+                    "Exiting game...", "Invalid user input. Please enter north, east, south or west");
         }
     }
 }

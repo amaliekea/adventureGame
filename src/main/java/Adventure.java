@@ -55,7 +55,7 @@ public class Adventure {
 
     //Metoden tager parameteren String userinput, som bruges til at tage brugerinput og skifte mellem hver case alt efter hvad brugeren indtaster.
 
-    public void movePlayer (String userInput) {
+    public void movePlayer (String userInput, String helpInformation, String wayBlocked, String exit, String invalid) {
 
 
             if(userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
@@ -64,7 +64,7 @@ public class Adventure {
                     currentRoom = currentRoom.getNorthConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
-                    System.out.println("Can't go this way...");
+                    System.out.println(wayBlocked);
                 }
             } else if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
                     || userInput.equalsIgnoreCase("go east")){
@@ -72,7 +72,7 @@ public class Adventure {
                     currentRoom = currentRoom.getEastConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
-                    System.out.println("Can't go this way...");
+                    System.out.println(wayBlocked);
                 }
             } else if (userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
                     || userInput.equalsIgnoreCase("go west")){
@@ -80,7 +80,7 @@ public class Adventure {
                     currentRoom = currentRoom.getWestConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
-                    System.out.println("Can't go this way...");
+                    System.out.println(wayBlocked);
                 }
             } else if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
                     || userInput.equalsIgnoreCase("go south")){
@@ -88,18 +88,16 @@ public class Adventure {
                     currentRoom = currentRoom.getSouthConnection();
                     System.out.println(roomNameAndDescription());
                 } else {
-                    System.out.println("Can't go this way...");
+                    System.out.println(wayBlocked);
                 }
             } else if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")){
                     System.out.println(roomNameAndDescription());
             } else if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")){
-                    System.out.println("Enter north, east, south or west to navigate");
-                    System.out.println("Enter \"look\" to get room information");
-                    System.out.println("Enter \"exit\" to quit the game");
+                    System.out.println(helpInformation);
             } else if (userInput.equalsIgnoreCase("exit")) {
-                    System.out.println("Exiting game...");
+                    System.out.println(exit);
             } else {
-                    System.out.println("Invalid user input. Please enter north, east, south or west");
+                    System.out.println(invalid);
             }
 
 //        switch (userInput) {
