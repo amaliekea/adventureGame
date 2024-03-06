@@ -4,12 +4,12 @@ public class UserInterface {
     //Opretter Adventure klasse objekt og Scanner objekt
     Adventure adventure = new Adventure();
     Scanner input = new Scanner(System.in);
-    String userInput = "";
-    int sentinel = 2;
+
 
     public void menu() {
         System.out.println("*** Welcome to the Adventure Game! ***\n");
         System.out.println("1. NEW GAME \n2. EXIT");
+        int sentinel = 2;
 
         int userInput = Integer.parseInt(input.nextLine());
 
