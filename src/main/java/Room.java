@@ -38,7 +38,7 @@ public class Room {
         this.connectionNorth = connectionNorth;
     }
 
-    public Room getConnectionEast(Room connectionEast) {
+    public Room getConnectionEast() {
         return connectionEast;
     }
 
@@ -54,7 +54,7 @@ public class Room {
         this.connectionSouth = connectionSouth;
     }
 
-    public Room getConnectionWest(Room connectionWest) {
+    public Room getConnectionWest() {
         return connectionWest;
     }
 
