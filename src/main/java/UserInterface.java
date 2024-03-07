@@ -26,6 +26,8 @@ private String userInput;
     }
 
     public void startGame() {
-
+        String helpInfo="Enter north, south, east or west to navigate\n Enter 'look' for room description\n Enter 'Exit' to leave the game"
+                String userInpt="";
+        System.out.println(input.);
     }
 }

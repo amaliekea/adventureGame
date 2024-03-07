@@ -19,27 +19,26 @@ public class Room {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName() {
         this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
+    public Room getConnectionNorth() {
+        return connectionNorth;
+    }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Room getConnectionNorth() {
-        return connectionNorth;
     }
 
     public void setConnectionNorth(Room connectionNorth) {
         this.connectionNorth = connectionNorth;
     }
 
-    public Room getConnectionEast() {
+    public Room getConnectionEast(Room connectionEast) {
         return connectionEast;
     }
 
@@ -55,7 +54,7 @@ public class Room {
         this.connectionSouth = connectionSouth;
     }
 
-    public Room getConnectionWest() {
+    public Room getConnectionWest(Room connectionWest) {
         return connectionWest;
     }
 
