@@ -8,8 +8,8 @@ public class Map {
     private Room room7;
     private Room room8;
     private Room room9;
-
-    private Room currentRoom;
+//first room
+    private Room firstRoom;
 
     public Map() {
         room1 = new Room("Area ONE", "Desolate and lifeless area, nothing but dark sand around. In the distance you see a green area full of life in one direction and dry land in the other", null, room2, room4, null);
@@ -22,15 +22,10 @@ public class Map {
         room8 = new Room("Area EIGHT", "Large mountain. In the distance you see a rocky cliff area, a dense alien-forest and an open meadow area", room5, room9, null, room7);
         room9 = new Room("Area NINE", "Open meadow area full of exotic flowers. In the distance you see a dark, dense forest and a large mountain", room6, null, null, room8);
 
-        currentRoom = room1;
+        firstRoom = room1;
     }
 
-    public Room getCurrentRoom() {
-        return currentRoom;
+    public Room getFirstRoom() {
+        return firstRoom;
     }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
-
 }

@@ -61,4 +61,5 @@ public class Room {
     public void setConnectionWest(Room connectionWest) {
         this.connectionWest = connectionWest;
     }
+
 }
