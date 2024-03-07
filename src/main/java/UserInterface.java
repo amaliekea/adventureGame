@@ -61,7 +61,6 @@ public class UserInterface {
         }
     }
     String parseInput(String userInput) {
-        System.out.println(userInput);
         if (userInput.equalsIgnoreCase("exit")) {
             return "exit";
         }
