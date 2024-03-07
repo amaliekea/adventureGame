@@ -1,9 +1,11 @@
 import java.util.Scanner;
 public class UserInterface {
     private String userInput;
-    AdventureGame adventure = new AdventureGame();
-   Scanner input = new Scanner(System.in);
+    private AdventureGame adventure;
+    private Scanner input;
     public UserInterface() {
+        adventure = new AdventureGame();
+        input = new Scanner(System.in);
     }
 
 
