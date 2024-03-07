@@ -11,7 +11,7 @@ public class Map {
     private Room currentRoom;
 
     public Map() {
-        room1 = new Room("Area ONE","Desolate and deserted area, nothing but dark sand around. In the distance you see a green area full of life in one direction and dry land in the other", null, room2, room4, null);
+        room1 = new Room("Area ONE","Desolate and lifeless area, nothing but dark sand around. In the distance you see a green area full of life in one direction and dry land in the other", null, room2, room4, null);
         room2 = new Room("Area TWO","Beautiful, green area full of life. In the distance you see an open ocean area and a dark desert area", null, room3, null, room1);
         room3 = new Room("Area THREE","Open ocean area full of life. In the distance you see a dense forest area and a green area full of life", null, null, room6, room2);
         room4 = new Room("Area FOUR","Dry plain area devoid of life. In the distance you see a dark desert area and an area of rocks and cliffs", room1, null, room7, null);
