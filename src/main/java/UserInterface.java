@@ -4,6 +4,8 @@ public class UserInterface {
     //Opretter Adventure klasse objekt og Scanner objekt
     Adventure adventure = new Adventure();
     Scanner input = new Scanner(System.in);
+    public UserInterface() {
+    }
 
 
     public void menu() {
@@ -28,9 +30,7 @@ public class UserInterface {
 
     //Opretter en startGame metode
     public void startGame(){
-
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
-
         String helpinfo = "Enter north, east, south or west to navigate" +
                 "\nEnter \"look\" to get room information" +
                 "\nEnter \"exit\" to quit the game";

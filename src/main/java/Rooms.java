@@ -60,7 +60,4 @@ public class Rooms {
     public void setWestConnection(Rooms westConnection) {
         this.westConnection = westConnection;
     }
-
-
-
 }
