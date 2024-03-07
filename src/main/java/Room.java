@@ -6,13 +6,13 @@ public class Room {
     private Room connectionSouth;
     private Room connectionWest;
 
-    public Room(String name, String description) {
+    public Room(String name, String description, Room connectionNorth, Room connectionEast, Room connectionSouth, Room connectionWest) {
         this.name = name;
         this.description = description;
-        connectionNorth = null;
-        connectionEast = null;
-        connectionSouth = null;
-        connectionWest = null;
+        this.connectionNorth = connectionNorth;
+        this.connectionEast = connectionEast;
+        this.connectionSouth = connectionSouth;
+        this.connectionWest = connectionWest;
     }
 
     public String getName() {
