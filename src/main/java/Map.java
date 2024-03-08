@@ -24,8 +24,8 @@ public class Map {
 
         firstRoom = room1;
 
-        room1.setConnectionEast(room2);
-        room1.setConnectionSouth(room4);
+        room1.setConnectionEast(room2); //er blevet nødt til at sætte connections sådan her
+        room1.setConnectionSouth(room4); //da de førhen blev sat til null værdi, da room 1 blev sat først og brugte room 2 og 4, der først blev sat bagefter.
 
         room2.setConnectionEast(room3);
         room2.setConnectionWest(room1);

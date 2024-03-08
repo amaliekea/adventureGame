@@ -60,9 +60,9 @@ public class UserInterface {
             }
         }
     }
-    String parseInput(String userInput) {
-        if (userInput.equalsIgnoreCase("exit")) {
-            return "exit";
+    String parseInput(String userInput) { //delt op da det tager alt brugerinput
+        if (userInput.equalsIgnoreCase("exit")) { //hvis bruger input lig exit
+            return "exit"; //hvis det er retuner exit
         }
         if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")) {
             return "look";
