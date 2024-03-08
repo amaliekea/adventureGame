@@ -33,6 +33,14 @@ public class Player {
         inventoryArr.remove(item); //fjerner item fra array
         currentRoom.addItem(item); //tilføjer derefter item til det rum man er i
     }
+    public item findItemInInventory(String itemName) {
+        for (item item : inventoryArr) { //iterer et item gennem hele inventory
+            if (item.getShortName().equalsIgnoreCase(itemName)) { // hvis item er lig itemname
+                return item; //retuner item hvis fundet
+            }
+        }
+        return null;
+    }
     public String currentRoomDescription() {
         return currentRoom.getDescription();
     }
