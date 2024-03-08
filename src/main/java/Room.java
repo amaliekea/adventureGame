@@ -7,7 +7,7 @@ public class Room {
     private Room connectionEast;
     private Room connectionSouth;
     private Room connectionWest;
-    private ArrayList<item> itemInRoomArr;
+    private ArrayList<item> itemInRoomArr = new ArrayList<>(); //opretter arrayliste
 
     public Room(String name, String description) {
         this.name = name;
@@ -16,8 +16,22 @@ public class Room {
         this.connectionEast = null;
         this.connectionSouth = null;
         this.connectionWest = null;
-        itemInRoomArr = new ArrayList<>();
     }
+    public void addItem(item item) { //tilføj items
+        this.itemInRoomArr.add(item);
+    }
+    public void removeItem(item item) { //fjern items
+        itemInRoomArr.remove(item);
+    }
+
+    public ArrayList<item> getItemInRoomArr() { //til at få items i array
+        return itemInRoomArr;
+    }
+
+    public void setItemInRoom(ArrayList<item> itemInRoomArr) { //til at sætte items i arr
+        this.itemInRoomArr = itemInRoomArr;
+    }
+
 
     public String getName() {
         return name;
