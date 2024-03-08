@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Player {
     private Room currentRoom;
     private String wayBlocked;
-    ArrayList<item> itemObjekter;
+    //ArrayList<item> itemObjekter; //inventory skal ligge herinde
 
     public Player(Room firstRoom) {
         currentRoom = firstRoom;
         wayBlocked = "Can't go this way...";
-        itemObjekter = new ArrayList<>();
+        //itemObjekter = new ArrayList<>();
     }
 
     public String currentRoomDescription() {

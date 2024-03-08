@@ -1,5 +1,4 @@
 public class item {
-
     private String longname;
     private String shortName;
 
@@ -15,5 +14,4 @@ public class item {
     public String getShortName() {
         return shortName;
     }
-
 }
