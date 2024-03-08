@@ -11,7 +11,7 @@ public class Player {
         return currentRoom.getDescription();
     }
 
-    public String movePlayerNorth() {
+    public String movePlayerNorth() { //har delt metoden op i 4
         if (currentRoom.getConnectionNorth() != null) {
             currentRoom = currentRoom.getConnectionNorth();
             return currentRoom.getDescription();
