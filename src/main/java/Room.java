@@ -7,37 +7,36 @@ public class Room {
     private Room connectionEast;
     private Room connectionSouth;
     private Room connectionWest;
-    private ArrayList<item> itemInRoomArr = new ArrayList<>(); //opretter arrayliste
+    private ArrayList<Item> itemInRoomArr = new ArrayList<>(); //opretter arrayliste
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
-        this.connectionNorth = null;
-        this.connectionEast = null;
-        this.connectionSouth = null;
-        this.connectionWest = null;
+        connectionNorth = null;
+        connectionEast = null;
+        connectionSouth = null;
+        connectionWest = null;
     }
-    public void addItem(item item) { //tilføj items
-        this.itemInRoomArr.add(item);
+    public void addItem(Item item) { //tilføj items
+        itemInRoomArr.add(item);
     }
-    public void removeItem(item item) { //fjern items
+    public void removeItem(Item item) { //fjern items
         itemInRoomArr.remove(item);
     }
 
-    public ArrayList<item> getItemInRoomArr() { //til at få items i array
+    public ArrayList<Item> getItemInRoomArr() { //til at få items i array
         return itemInRoomArr;
     }
 
-    public void setItemInRoom(ArrayList<item> itemInRoomArr) { //til at sætte items i arr
+    public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
         this.itemInRoomArr = itemInRoomArr;
     }
-
 
     public String getName() {
         return name;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 

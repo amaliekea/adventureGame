@@ -1,13 +1,11 @@
 import java.util.Scanner;
 public class UserInterface {
-    private String userInput;
     private AdventureGame adventure;
     private Scanner input;
     public UserInterface() {
         adventure = new AdventureGame();
         input = new Scanner(System.in);
     }
-
 
     public void menu() {
         System.out.println("*** Welcome to the Adventure Game! ***\n");
@@ -33,26 +31,27 @@ public class UserInterface {
 
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
 
-        String helpinfo = "Enter north, east, south or west to navigate" +
-                "\nEnter \"look\" to get room information" +
-                "\nEnter \"exit\" to quit the game";
+        String helpInfo = "Enter north, east, south or west to navigate \nEnter \"look\" to get room information \nEnter \"exit\" to quit the game";
         String exit = "Exiting game...";
 
         String userInput = "";
+        System.out.println("As your spacecraft descends onto the alien soil of a new planet, anticipation fills the air. \nYou step out into a world of surreal landscapes and unfamiliar sounds, the sky above swirling with colors unknown. \nWith every breath, you sense the adventure awaiting on this uncharted frontier. \nWelcome, explorer, to the planet Anthoria.\n");
+        System.out.println("If you wish to go forward, press any key followed my enter. But beware of detours...");
+        input.next();
         System.out.println(adventure.getCurrentRoom());
+        System.out.println("Which way do you wish to travel?");
 
         while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
-            userInput=parseInput(userInput);
+            userInput = parseInput(userInput);
             if (userInput == null) {
                 System.out.println("Invalid user input. Please enter north, east, south or west...");
             } else {
                 if (userInput.equalsIgnoreCase("help")) {
-                    System.out.println(helpinfo);
+                    System.out.println(helpInfo);
                 }
                 if (userInput.equalsIgnoreCase("exit")) {
-                    System.out.println("Exiting game...");
-                    return;
+                    System.out.println(exit);
                 } else {
                     String message = adventure.movePlayer(userInput);
                     System.out.println(message);
@@ -60,7 +59,7 @@ public class UserInterface {
             }
         }
     }
-    String parseInput(String userInput) { //delt op da det tager alt brugerinput
+    public String parseInput(String userInput) { //delt op da det tager alt brugerinput
         if (userInput.equalsIgnoreCase("exit")) { //hvis bruger input lig exit
             return "exit"; //hvis det er retuner exit
         }

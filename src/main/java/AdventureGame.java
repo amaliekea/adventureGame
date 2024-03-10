@@ -5,12 +5,11 @@ public class AdventureGame {
     public AdventureGame() {
         maps = new Map();
         player = new Player(maps.getFirstRoom());
-        //player.movePlayer(player.currentRoomDescription());
 
     }
 
     public String getCurrentRoom() {
-        return player.currentRoomDescription();
+        return player.getCurrentRoom();
     }
 
     public String movePlayer(String userInput) {
@@ -23,7 +22,7 @@ public class AdventureGame {
         } else if (userInput.equalsIgnoreCase("w")) {
            return player.movePlayerWest();
         } else if (userInput.equalsIgnoreCase("look")) {
-           return player.currentRoomDescription();
+           return player.getCurrentRoom();
         }
         return "";
     }

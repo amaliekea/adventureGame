@@ -3,52 +3,53 @@ import java.util.ArrayList;
 public class Player {
     private Room currentRoom;
     private String wayBlocked;
-    private ArrayList<item> inventoryArr;
+    private ArrayList<Item> inventoryArr;
+    private String question = "Which way do you wish to travel?";
 
     public Player(Room firstRoom) {
         currentRoom = firstRoom;
-        wayBlocked = "Can't go this way...";
-        this.inventoryArr = new ArrayList<>();
+        wayBlocked = "Be careful, you cannot go this way...";
+        inventoryArr = new ArrayList<>();
     }
-    public void addItem(item item) { //tilføj items
-        this.inventoryArr.add(item);
+    public void addItem(Item item) { //tilføj items
+        inventoryArr.add(item);
     }
-    public void removeItem(item item) { //fjern items
+    public void removeItem(Item item) { //fjern items
         inventoryArr.remove(item);
     }
 
-    public ArrayList<item> getItemInRoomArr() { //til at få items i array
+    public ArrayList<Item> getItemInRoomArr() { //til at få items i array
         return inventoryArr;
     }
 
-    public void setItemInRoom(ArrayList<item> itemInRoomArr) { //til at sætte items i arr
+    public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
         this.inventoryArr = itemInRoomArr;
     }
-    public void takeItem(item item) {
+    public void takeItem(Item item) {
         inventoryArr.add(item); //tilføjer item til array
         currentRoom.removeItem(item); //fjerner item fra currentroom
     }
 
-    public void dropItem(item item) { //flytter et item method
+    public void dropItem(Item item) { //flytter et item method
         inventoryArr.remove(item); //fjerner item fra array
         currentRoom.addItem(item); //tilføjer derefter item til det rum man er i
     }
-    public item findItemInInventory(String itemName) {
-        for (item item : inventoryArr) { //iterer et item gennem hele inventory
+    public Item findItemInInventory(String itemName) {
+        for (Item item : inventoryArr) { //iterer et item gennem hele inventory
             if (item.getShortName().equalsIgnoreCase(itemName)) { // hvis item er lig itemname
                 return item; //retuner item hvis fundet
             }
         }
         return null;
     }
-    public String currentRoomDescription() {
-        return currentRoom.getDescription();
+    public String getCurrentRoom() {
+        return currentRoom.getName() + ": " + currentRoom.getDescription();
     }
 
     public String movePlayerNorth() { //har delt metoden op i 4
         if (currentRoom.getConnectionNorth() != null) {
             currentRoom = currentRoom.getConnectionNorth();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
@@ -57,7 +58,7 @@ public class Player {
     public String movePlayerEast() {
         if (currentRoom.getConnectionEast() != null) {
             currentRoom = currentRoom.getConnectionEast();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
@@ -66,7 +67,7 @@ public class Player {
     public String movePlayerWest() {
         if (currentRoom.getConnectionWest() != null) {
             currentRoom = currentRoom.getConnectionWest();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
@@ -75,7 +76,7 @@ public class Player {
     public String movePlayerSouth() {
         if (currentRoom.getConnectionSouth() != null) {
             currentRoom = currentRoom.getConnectionSouth();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
