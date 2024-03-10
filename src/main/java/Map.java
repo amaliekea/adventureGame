@@ -8,10 +8,10 @@ public class Map {
     private Room room7;
     private Room room8;
     private Room room9;
-//first room
     private Room firstRoom;
 
     public Map() {
+
         room1 = new Room("Area ONE", "Desolate and lifeless area, nothing but dark sand around. In the distance you see a green area full of life in one direction and dry land in the other");
         room2 = new Room("Area TWO", "Beautiful, green area full of life. In the distance you see an open ocean area and a dark desert area");
         room3 = new Room("Area THREE", "Open ocean area full of life. In the distance you see a dense forest area and a green area full of life");
@@ -50,6 +50,10 @@ public class Map {
 
         room9.setConnectionNorth(room6);
         room9.setConnectionWest(room8);
+
+        room1.addItem(new item("lamp", "a shiny lamp"));
+        room2.addItem(new item("a gold knife","knife"));
+        room3.addItem(new item("a diamond pickaxe","pickaxe"));
     }
 
     public Room getFirstRoom() {

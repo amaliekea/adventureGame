@@ -10,6 +10,9 @@ public class Player {
         wayBlocked = "Can't go this way...";
         this.inventoryArr = new ArrayList<>();
     }
+    public ArrayList<item> getInventory() {
+        return inventoryArr;
+    }
     public void addItem(item item) { //tilføj items
         this.inventoryArr.add(item);
     }
@@ -81,6 +84,3 @@ public class Player {
         }
     }
 }
-
-
-
