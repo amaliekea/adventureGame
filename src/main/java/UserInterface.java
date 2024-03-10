@@ -44,11 +44,12 @@ public class UserInterface {
         String userInput = "";
         System.out.println(adventure.getCurrentRoom());
 
-        ArrayList<item> inventoryArr = adventure.getInventory();
+       /* ArrayList<item> inventoryArr = adventure.getInventory();
         System.out.println("Your inventory contains these items: ");
         for (item invItem : inventoryArr) {
             System.out.println("Item short name: " + invItem.getShortName());
         }
+        */
 
             while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
