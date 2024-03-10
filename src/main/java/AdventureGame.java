@@ -18,7 +18,7 @@ public class AdventureGame {
     public String getCurrentRoom() {
         return player.getCurrentRoom();
     }
-    public ArrayList<item> getInventory() {
+    public ArrayList<Item> getInventory() {
         return player.getInventory();
     }
 
