@@ -7,7 +7,7 @@ public class Room {
     private Room connectionEast;
     private Room connectionSouth;
     private Room connectionWest;
-    private ArrayList<item> itemInRoomArr = new ArrayList<>(); //opretter arrayliste
+    private ArrayList<Item> itemInRoomArr = new ArrayList<>(); //opretter arrayliste
 
     public Room(String name, String description) {
         this.name = name;
@@ -17,18 +17,31 @@ public class Room {
         this.connectionSouth = null;
         this.connectionWest = null;
     }
-    public void addItem(item item) { //tilføj items
+    public void addItem(Item item) { //tilføj items
         this.itemInRoomArr.add(item);
     }
-    public void removeItem(item item) { //fjern items
-        itemInRoomArr.remove(item);
+    public Item removeItem(int i) { //fjern items
+        Item item = itemInRoomArr.get(i);
+        itemInRoomArr.remove(i);
+        return item;
+    }
+    public int searchItem(String desciption) { //søger efter objekt i rum
+        int count = 0; //tæller antal items der opfylder search
+
+        for (Item i: itemInRoomArr) { //for hvert item objekt 'i' i itemInRoomArr
+            if (i.getShortName().toLowerCase().contains(desciption.toLowerCase())) {
+                return count;
+            }
+            count++;
+        }
+        return -1;
     }
 
-    public ArrayList<item> getItemInRoomArr() { //til at få items i array
+    public ArrayList<Item> getItemInRoomArr() { //til at få items i array
         return itemInRoomArr;
     }
 
-    public void setItemInRoom(ArrayList<item> itemInRoomArr) { //til at sætte items i arr
+    public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
         this.itemInRoomArr = itemInRoomArr;
     }
 

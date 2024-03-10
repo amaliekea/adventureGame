@@ -44,27 +44,27 @@ public class UserInterface {
         String userInput = "";
         System.out.println(adventure.getCurrentRoom());
 
-       /* ArrayList<item> inventoryArr = adventure.getInventory();
-        System.out.println("Your inventory contains these items: ");
-        for (item invItem : inventoryArr) {
-            System.out.println("Item short name: " + invItem.getShortName());
-        }
-        */
-
             while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
-            userInput=parseInput(userInput);
             if (userInput == null) {
                 System.out.println("Invalid user input. Please enter north, east, south or west...");
             } else {
-                if (userInput.equalsIgnoreCase("help")) {
+               if  (userInput.equalsIgnoreCase("help")) {
                     System.out.println(helpinfo);
                 }
-                if (userInput.equalsIgnoreCase("exit")) {
+                else if (userInput.equalsIgnoreCase("exit")) {
                     System.out.println("Exiting game...");
                     return;
+                }
+                else if (userInput.equalsIgnoreCase("look")) {
+                    System.out.println(adventure.lookPlayer());
+                }
+                else if (userInput.toLowerCase().startsWith("take")) {
+                    String itemdescription = userInput.toLowerCase().substring(5);//remove take and leave description
+                    System.out.println(adventure.takeItem(itemdescription));
                 } else {
-                    String message = adventure.movePlayer(userInput);
+                   userInput=parseInput(userInput);
+                   String message = adventure.movePlayer(userInput);
                     System.out.println(message);
                 }
             }

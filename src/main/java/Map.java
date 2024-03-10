@@ -51,10 +51,10 @@ public class Map {
         room9.setConnectionNorth(room6);
         room9.setConnectionWest(room8);
 
-        room1.addItem(new item("a shiny lamp", "lamp"));
-        room1.addItem(new item("a danger dog", "dog"));
-        room2.addItem(new item("a gold knife","knife"));
-        room3.addItem(new item("a diamond pickaxe","pickaxe"));
+        room1.addItem(new Item("a shiny lamp", "lamp"));
+        room1.addItem(new Item("a danger dog", "dog"));
+        room2.addItem(new Item("a gold knife","knife"));
+        room3.addItem(new Item("a diamond pickaxe","pickaxe"));
     }
 
     public Room getFirstRoom() {
