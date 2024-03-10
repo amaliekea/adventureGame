@@ -40,8 +40,18 @@ public class Room {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescription() { //udskriver desciption + hvilke items i rum
+        String desc="";
+        for (int i=0; i<itemInRoomArr.size(); i++) {
+            desc += itemInRoomArr.get(i).getShortName();
+            if(i< itemInRoomArr.size()-1) {
+                desc+=", ";
+            }
+        }
+        if (itemInRoomArr.size()==0) {
+            desc = "no items";
+        }
+        return description + "\n This room contains: "+ desc;
     }
     public Room getConnectionNorth() {
         return connectionNorth;

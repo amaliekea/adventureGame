@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class UserInterface {
     private AdventureGame adventure;
@@ -12,7 +13,9 @@ public class UserInterface {
         System.out.println("1. NEW GAME \n2. EXIT");
         int sentinel = 2;
 
-        int userInput = Integer.parseInt(input.nextLine());
+
+
+            int userInput = Integer.parseInt(input.nextLine());
 
         while (userInput != sentinel) {
             if (userInput < 0 || userInput > 4) {
@@ -41,7 +44,14 @@ public class UserInterface {
         System.out.println(adventure.getCurrentRoom());
         System.out.println("Which way do you wish to travel?");
 
-        while (!userInput.equalsIgnoreCase("exit")) {
+       /* ArrayList<item> inventoryArr = adventure.getInventory();
+        System.out.println("Your inventory contains these items: ");
+        for (item invItem : inventoryArr) {
+            System.out.println("Item short name: " + invItem.getShortName());
+        }
+        */
+
+            while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
             userInput = parseInput(userInput);
             if (userInput == null) {

@@ -1,15 +1,25 @@
+import java.util.ArrayList;
+
 public class AdventureGame {
     Player player;
     Map maps;
+
 
     public AdventureGame() {
         maps = new Map();
         player = new Player(maps.getFirstRoom());
 
     }
+    public Player player() {
+        // retuner Player instance
+        return this.player;
+    }
 
     public String getCurrentRoom() {
         return player.getCurrentRoom();
+    }
+    public ArrayList<item> getInventory() {
+        return player.getInventory();
     }
 
     public String movePlayer(String userInput) {
