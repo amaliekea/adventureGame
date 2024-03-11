@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 public class UserInterface {
     private AdventureGame adventure;
@@ -11,21 +10,20 @@ public class UserInterface {
 
     public void menu() {
         System.out.println("*** Welcome to the Adventure Game! ***\n");
-        System.out.println("1. NEW GAME \n2. EXIT");
-        int sentinel = 2;
-        int userInput = Integer.parseInt(input.nextLine());
+        System.out.println("PRESS: \nNEW GAME \nEXIT");
+        String userInput = input.nextLine();
 
-        while (userInput != sentinel) {
-            if (userInput < 0 || userInput > 4) {
-                System.out.println("*** Input invalid *** \nPlease enter 1 to start game, 2 to resume game or 3 to exit");
-                userInput = Integer.parseInt(input.nextLine());
-            } else if (userInput == 1) {
+        while (!(userInput.isEmpty())) {
+            if ((userInput.equalsIgnoreCase("exit"))) {
+                System.out.println("Exiting...");
+                System.exit(0);
+                 } else if (userInput.equalsIgnoreCase("new game")) {
                 System.out.println("Starting new game....\n");
                 startGame();
             }
-            System.out.println("Exiting....\n");
+            System.out.println("*** Input invalid *** \nPlease enter NEW GAME to start game or EXIT to end the program");
+            userInput = input.nextLine();
         }
-
     }
 
     public void startGame() {
@@ -53,6 +51,7 @@ public class UserInterface {
                 }
                 case "exit" -> {
                     System.out.println(exit);
+                    System.exit(0);
                 }
                 case "look" -> {
                     System.out.println(adventure.lookPlayer());
