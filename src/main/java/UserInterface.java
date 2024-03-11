@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class UserInterface {
     private AdventureGame adventure;
     private Scanner input;
+
     public UserInterface() {
         adventure = new AdventureGame();
         input = new Scanner(System.in);
@@ -14,8 +16,7 @@ public class UserInterface {
         int sentinel = 2;
 
 
-
-            int userInput = Integer.parseInt(input.nextLine());
+        int userInput = Integer.parseInt(input.nextLine());
 
         while (userInput != sentinel) {
             if (userInput < 0 || userInput > 4) {
@@ -30,7 +31,8 @@ public class UserInterface {
         }
 
     }
-    public void startGame(){
+
+    public void startGame() {
 
         //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
 
@@ -44,7 +46,7 @@ public class UserInterface {
         System.out.println(adventure.getCurrentRoom());
         System.out.println("Which way do you wish to travel?");
 
-            while (!userInput.equalsIgnoreCase("exit")) {
+        while (!userInput.equalsIgnoreCase("exit")) {
             userInput = input.nextLine();
             if (userInput == null) {
                 System.out.println("Invalid user input. Please enter north, east, south or west...");
@@ -52,55 +54,54 @@ public class UserInterface {
                 if (userInput.equalsIgnoreCase("help")) {
                     System.out.println(helpInfo);
                 }
-                if (userInput.equalsIgnoreCase("exit")) {
-                    System.out.println(exit);
                 else if (userInput.equalsIgnoreCase("exit")) {
-                    System.out.println("Exiting game...");
-                    return;
+                    System.out.println(exit);
                 }
-                else if (userInput.equalsIgnoreCase("look")) {
-                    System.out.println(adventure.lookPlayer());
-                }
-                else if (userInput.toLowerCase().startsWith("take")) {
-                    String itemdescription = userInput.toLowerCase().substring(5);//remove take and leave description
-                    System.out.println(adventure.takeItem(itemdescription));
-                } else {
-                   userInput=parseInput(userInput);
-                   String message = adventure.movePlayer(userInput);
-                    System.out.println(message);
+                else if (userInput.equalsIgnoreCase("exit")) {
+                        System.out.println("Exiting game...");
+                        return;
+                    } else if (userInput.equalsIgnoreCase("look")) {
+                        System.out.println(adventure.lookPlayer());
+                    } else if (userInput.toLowerCase().startsWith("take")) {
+                        String itemdescription = userInput.toLowerCase().substring(5);//remove take and leave description
+                        System.out.println(adventure.takeItem(itemdescription));
+                    } else {
+                        userInput = parseInput(userInput);
+                        String message = adventure.movePlayer(userInput);
+                        System.out.println(message);
+                    }
                 }
             }
         }
+        public String parseInput (String userInput){ //delt op da det tager alt brugerinput
+            if (userInput.equalsIgnoreCase("exit")) { //hvis bruger input lig exit
+                return "exit"; //hvis det er retuner exit
+            }
+            if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")) {
+                return "look";
+            }
+            if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")) {
+                return "help";
+            }
+            if (userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
+                    || userInput.equalsIgnoreCase("go north")) {
+                return "n";
+            }
+            if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
+                    || userInput.equalsIgnoreCase("go east")) {
+                return "e";
+            }
+            if ((userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
+                    || userInput.equalsIgnoreCase("go west"))) {
+                return "w";
+            }
+            if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
+                    || userInput.equalsIgnoreCase("go south")) {
+                return "s";
+            }
+            if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("help me") || userInput.equalsIgnoreCase("info") || userInput.equalsIgnoreCase("h")) {
+                return "help";
+            }
+            return "";
+        }
     }
-    public String parseInput(String userInput) { //delt op da det tager alt brugerinput
-        if (userInput.equalsIgnoreCase("exit")) { //hvis bruger input lig exit
-            return "exit"; //hvis det er retuner exit
-        }
-        if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")) {
-            return "look";
-        }
-        if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")){
-            return "help";
-        }
-        if (userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
-                || userInput.equalsIgnoreCase("go north")) {
-            return "n";
-        }
-        if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
-                || userInput.equalsIgnoreCase("go east")) {
-            return "e";
-        }
-        if ((userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
-                || userInput.equalsIgnoreCase("go west"))) {
-            return "w";
-        }
-        if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
-                || userInput.equalsIgnoreCase("go south")) {
-            return "s";
-        }
-        if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("help me") || userInput.equalsIgnoreCase("info") || userInput.equalsIgnoreCase("h")) {
-            return "help";
-        }
-        return "";
-    }
-}
