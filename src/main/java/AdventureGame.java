@@ -21,9 +21,14 @@ public class AdventureGame {
     public ArrayList<Item> getInventory() {
         return player.getInventory();
     }
+    public ArrayList<Item> getInventoryArr() {
+        return player.getInventoryArr();
+    }
     public String takeItem (String description) {
         return player.takeItem(description);
     }
+
+
 
     public String lookPlayer() {
         return player.getCurrentRoom();

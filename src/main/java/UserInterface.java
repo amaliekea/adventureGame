@@ -53,55 +53,64 @@ public class UserInterface {
             } else {
                 if (userInput.equalsIgnoreCase("help")) {
                     System.out.println(helpInfo);
-                }
-                else if (userInput.equalsIgnoreCase("exit")) {
+                } else if (userInput.equalsIgnoreCase("exit")) {
                     System.out.println(exit);
-                }
-                else if (userInput.equalsIgnoreCase("exit")) {
-                        System.out.println("Exiting game...");
-                        return;
-                    } else if (userInput.equalsIgnoreCase("look")) {
-                        System.out.println(adventure.lookPlayer());
-                    } else if (userInput.toLowerCase().startsWith("take")) {
-                        String itemdescription = userInput.toLowerCase().substring(5);//remove take and leave description
-                        System.out.println(adventure.takeItem(itemdescription));
+                } else if (userInput.equalsIgnoreCase("exit")) {
+                    System.out.println("Exiting game...");
+                    return;
+                } else if (userInput.equalsIgnoreCase("look")) {
+                    System.out.println(adventure.lookPlayer());
+                } else if (userInput.toLowerCase().startsWith("take")) {
+                    String itemdescription = userInput.toLowerCase().substring(5);//remove take and leave description
+                    System.out.println(adventure.takeItem(itemdescription));
+                } else if(userInput.equalsIgnoreCase("inventory")) { //hvis brugeren taster inventory
+                    ArrayList<Item> inventory = adventure.getInventoryArr();
+                    if (inventory.isEmpty()) { //hvis det er tomt
+                        System.out.println("Ur inventory is empty...");
                     } else {
-                        userInput = parseInput(userInput);
-                        String message = adventure.movePlayer(userInput);
-                        System.out.println(message);
+                        System.out.println("Here is your inventory:");
+                        for (Item item : inventory) { //for hvert object item i ivetory
+                            System.out.println(item.getLongName()); //printer longname ud for hvert objekt
+                        }
                     }
+                } else {
+                    userInput = parseInput(userInput);
+                    String message = adventure.movePlayer(userInput);
+                    System.out.println(message);
                 }
             }
-        }
-        public String parseInput (String userInput){ //delt op da det tager alt brugerinput
-            if (userInput.equalsIgnoreCase("exit")) { //hvis bruger input lig exit
-                return "exit"; //hvis det er retuner exit
-            }
-            if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")) {
-                return "look";
-            }
-            if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")) {
-                return "help";
-            }
-            if (userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
-                    || userInput.equalsIgnoreCase("go north")) {
-                return "n";
-            }
-            if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
-                    || userInput.equalsIgnoreCase("go east")) {
-                return "e";
-            }
-            if ((userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
-                    || userInput.equalsIgnoreCase("go west"))) {
-                return "w";
-            }
-            if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
-                    || userInput.equalsIgnoreCase("go south")) {
-                return "s";
-            }
-            if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("help me") || userInput.equalsIgnoreCase("info") || userInput.equalsIgnoreCase("h")) {
-                return "help";
-            }
-            return "";
         }
     }
+
+    public String parseInput(String userInput) { //delt op da det tager alt brugerinput
+        if (userInput.equalsIgnoreCase("exit")) { //hvis bruger input lig exit
+            return "exit"; //hvis det er retuner exit
+        }
+        if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")) {
+            return "look";
+        }
+        if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")) {
+            return "help";
+        }
+        if (userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
+                || userInput.equalsIgnoreCase("go north")) {
+            return "n";
+        }
+        if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
+                || userInput.equalsIgnoreCase("go east")) {
+            return "e";
+        }
+        if ((userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
+                || userInput.equalsIgnoreCase("go west"))) {
+            return "w";
+        }
+        if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
+                || userInput.equalsIgnoreCase("go south")) {
+            return "s";
+        }
+        if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("help me") || userInput.equalsIgnoreCase("info") || userInput.equalsIgnoreCase("h")) {
+            return "help";
+        }
+        return "";
+    }
+}

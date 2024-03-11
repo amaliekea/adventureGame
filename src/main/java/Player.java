@@ -10,6 +10,19 @@ public class Player {
         currentRoom = firstRoom;
         wayBlocked = "Be careful, you cannot go this way...";
         inventoryArr = new ArrayList<>();
+      //  inventoryArr.add(new Item("tester", "tester")); //tilføj items til player objekt
+       // inventoryArr.add(new Item("sword", "A dusty sword"));
+    }
+    public String showInventory() { //ved ikke helt om den her virker
+        if(inventoryArr.isEmpty()) {
+            return "empty inventory";
+        } else {
+            String items="";
+            for (Item item : inventoryArr) {
+               items= item.getShortName();
+            }
+            return items;
+        }
     }
     public ArrayList<Item> getInventory() {
         return inventoryArr;
@@ -17,14 +30,21 @@ public class Player {
     public void removeItem(Item item) { //fjern items
         inventoryArr.remove(item);
     }
+    public void addItem(Item item) {
+        inventoryArr.add(item);
+    }
+    public void takeItem(Item item) {
+        inventoryArr.add(item);
+    }
 
-    public ArrayList<Item> getItemInRoomArr() { //til at få items i array
+    public ArrayList<Item> getInventoryArr() { //til at få items i array
         return inventoryArr;
     }
 
     public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
         this.inventoryArr = itemInRoomArr;
     }
+
     public String takeItem(String description) {
         int i = currentRoom.searchItem(description); {
             if (i < 0) {
@@ -36,6 +56,7 @@ public class Player {
             }
         }
     }
+
 
     public void dropItem(Item item) { //flytter et item method
         inventoryArr.remove(item); //fjerner item fra array
