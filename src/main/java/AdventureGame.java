@@ -30,6 +30,9 @@ public class AdventureGame {
     public String dropItem(String drop) {
       return player.dropItem(drop);
     }
+    public String showInventory() {
+        return player.showInventory();
+    }
 
     public String lookPlayer() {
         return player.getCurrentRoom();

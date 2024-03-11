@@ -64,7 +64,7 @@ public class UserInterface {
                     String itemdescription = userInput.toLowerCase().substring(5);//remove take and leave description
                     System.out.println(adventure.takeItem(itemdescription));
                 } else if(userInput.equalsIgnoreCase("inventory")) { //hvis brugeren taster inventory
-                    System.out.println(adventure.player().showInventory());
+                    System.out.println(adventure.showInventory());
                 } else if (userInput.toLowerCase().startsWith("drop")) {
                     String itemToDrop = userInput.toLowerCase().substring(5);
                     System.out.println(adventure.dropItem(itemToDrop));
