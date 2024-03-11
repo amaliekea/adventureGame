@@ -26,8 +26,8 @@ public class Map {
         room1.setConnectionEast(room2);
         room1.setConnectionSouth(room4);
 
-        room2.setConnectionEast(room3);
         room2.setConnectionWest(room1);
+        room2.setConnectionEast(room3);
 
         room3.setConnectionSouth(room6);
         room3.setConnectionWest(room2);

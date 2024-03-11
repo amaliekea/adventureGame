@@ -17,12 +17,30 @@ public class Player {
     public void removeItem(Item item) {
         inventoryArr.remove(item);
     }
+    public void addItem(Item item) {
+        inventoryArr.add(item);
+    }
+    public void takeItem(Item item) {
+        inventoryArr.add(item);
+    }
 
     public ArrayList<Item> getItemInRoomArr() {
         return inventoryArr;
     }
 
     public void setItemInRoom(ArrayList<Item> itemInRoomArr) {
+    public String showInventory() {
+        String show = "";
+        if (inventoryArr.isEmpty()) { //hvis det er tomt
+            return ("Ur inventory is empty...");
+        } else {
+            for (Item item : inventoryArr) { //for hvert object item i ivetory
+                show += (item.getLongName()) + ", "; //printer longname ud for hvert objekt
+            }
+        }
+        return "you have collected " + show;
+    }
+    public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
         this.inventoryArr = itemInRoomArr;
     }
     public String takeItem(String itemDescription) {
@@ -40,6 +58,16 @@ public class Player {
     public void dropItem(Item item) {
         inventoryArr.remove(item);
         currentRoom.addItem(item);
+    public String dropItem(String drop) {
+        Item item = findItemInInventory(drop);
+        if (item != null) {
+            inventoryArr.remove(item);
+            currentRoom.addItem(item);
+            System.out.println("you dropped the " + item.getShortName());
+        } else {
+            return ("you dont have this " + drop + " in ur inventory.");
+        }
+        return "";
     }
     public Item findItemInInventory(String itemName) {
         for (Item item : inventoryArr) {
