@@ -10,37 +10,24 @@ public class AdventureGame {
         player = new Player(maps.getFirstRoom());
 
     }
-    public Player player() {
-        // retuner Player instance
-        return this.player;
-    }
 
     public String getCurrentRoom() {
         return player.getCurrentRoom();
     }
+
     public ArrayList<Item> getInventory() {
         return player.getInventory();
     }
-    public String takeItem (String description) {
+
+    public String takeItem(String description) {
         return player.takeItem(description);
     }
 
     public String lookPlayer() {
-        return player.currentRoomDescription();
+        return player.getCurrentRoom();
     }
 
     public String movePlayer(String userInput) {
-        if (userInput.equalsIgnoreCase("n")) {
-           return player.movePlayerNorth();
-        } else if (userInput.equalsIgnoreCase("e")) {
-           return player.movePlayerEast();
-        } else if (userInput.equalsIgnoreCase("s")) {
-           return player.movePlayerSouth();
-        } else if (userInput.equalsIgnoreCase("w")) {
-           return player.movePlayerWest();
-        } else if (userInput.equalsIgnoreCase("look")) {
-           return player.getCurrentRoom();
-        }
-        return "";
+        return player.movePlayer(userInput);
     }
 }
