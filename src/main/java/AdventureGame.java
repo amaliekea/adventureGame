@@ -26,7 +26,8 @@ public class AdventureGame {
     }
 
     public String lookPlayer() {
-        return player.currentRoomDescription();
+        return player.getCurrentRoom();
+        //return player.currentRoomDescription();
     }
 
     public String movePlayer(String userInput) {
