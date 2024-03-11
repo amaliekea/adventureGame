@@ -1,18 +1,19 @@
 public class Item {
-    private String longname;
+
+    private String longName;
     private String shortName;
 
-    public Item(String longname, String shortName) {
-        this.longname=longname;
-        this.shortName=shortName;
-
+    public Item(String longName, String shortName) {
+        this.longName = longName;
+        this.shortName = shortName;
     }
 
-    public String getLongname() {
-        return longname;
+    public String getLongName() {
+        return longName;
     }
 
     public String getShortName() {
         return shortName;
     }
 }
+

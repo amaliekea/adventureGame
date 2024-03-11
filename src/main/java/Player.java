@@ -4,17 +4,15 @@ public class Player {
     private Room currentRoom;
     private String wayBlocked;
     private ArrayList<Item> inventoryArr;
+    private String question = "Which way do you wish to travel?";
 
     public Player(Room firstRoom) {
         currentRoom = firstRoom;
-        wayBlocked = "Can't go this way...";
-        this.inventoryArr = new ArrayList<>();
+        wayBlocked = "Be careful, you cannot go this way...";
+        inventoryArr = new ArrayList<>();
     }
     public ArrayList<Item> getInventory() {
         return inventoryArr;
-    }
-    public void addItem(Item item) { //tilføj items
-        this.inventoryArr.add(item);
     }
     public void removeItem(Item item) { //fjern items
         inventoryArr.remove(item);
@@ -51,14 +49,14 @@ public class Player {
         }
         return null;
     }
-    public String currentRoomDescription() {
-        return currentRoom.getDescription();
+    public String getCurrentRoom() {
+        return currentRoom.getName() + ": " + currentRoom.getDescription();
     }
 
     public String movePlayerNorth() { //har delt metoden op i 4
         if (currentRoom.getConnectionNorth() != null) {
             currentRoom = currentRoom.getConnectionNorth();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
@@ -67,7 +65,7 @@ public class Player {
     public String movePlayerEast() {
         if (currentRoom.getConnectionEast() != null) {
             currentRoom = currentRoom.getConnectionEast();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
@@ -76,7 +74,7 @@ public class Player {
     public String movePlayerWest() {
         if (currentRoom.getConnectionWest() != null) {
             currentRoom = currentRoom.getConnectionWest();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
@@ -85,9 +83,12 @@ public class Player {
     public String movePlayerSouth() {
         if (currentRoom.getConnectionSouth() != null) {
             currentRoom = currentRoom.getConnectionSouth();
-            return currentRoom.getDescription();
+            return getCurrentRoom() + "\n" + question;
         } else {
             return wayBlocked;
         }
     }
 }
+
+
+

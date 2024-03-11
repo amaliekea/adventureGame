@@ -12,13 +12,13 @@ public class Room {
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
-        this.connectionNorth = null;
-        this.connectionEast = null;
-        this.connectionSouth = null;
-        this.connectionWest = null;
+        connectionNorth = null;
+        connectionEast = null;
+        connectionSouth = null;
+        connectionWest = null;
     }
     public void addItem(Item item) { //tilføj items
-        this.itemInRoomArr.add(item);
+        itemInRoomArr.add(item);
     }
     public Item removeItem(int i) { //fjern items
         Item item = itemInRoomArr.get(i);
@@ -50,7 +50,7 @@ public class Room {
         return name;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 

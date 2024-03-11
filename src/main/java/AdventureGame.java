@@ -8,7 +8,6 @@ public class AdventureGame {
     public AdventureGame() {
         maps = new Map();
         player = new Player(maps.getFirstRoom());
-        //player.movePlayer(player.currentRoomDescription());
 
     }
     public Player player() {
@@ -17,7 +16,7 @@ public class AdventureGame {
     }
 
     public String getCurrentRoom() {
-        return player.currentRoomDescription();
+        return player.getCurrentRoom();
     }
     public ArrayList<Item> getInventory() {
         return player.getInventory();
@@ -39,6 +38,8 @@ public class AdventureGame {
            return player.movePlayerSouth();
         } else if (userInput.equalsIgnoreCase("w")) {
            return player.movePlayerWest();
+        } else if (userInput.equalsIgnoreCase("look")) {
+           return player.getCurrentRoom();
         }
         return "";
     }
