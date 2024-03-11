@@ -35,8 +35,9 @@ public class Player {
             return ("Ur inventory is empty...");
         } else {
             for (Item item : inventoryArr) { //for hvert object item i ivetory
-                show += (item.getLongName()) + ", "; //printer longname ud for hvert objekt
+                show += (item.getShortName()) + ", "; //printer longname ud for hvert objekt
             }
+            show = show.substring(0, show.length() - 2) + "."; // for at fjerne det sidste komma
         }
         return "you have collected " + show;
     }
@@ -63,11 +64,10 @@ public class Player {
         if (item != null) {
             inventoryArr.remove(item);
             currentRoom.addItem(item);
-            System.out.println("you dropped the " + item.getShortName());
+            return ("you dropped the " + item.getShortName());
         } else {
-            return ("you dont have this " + drop + " in ur inventory.");
+            return ("you dont have this " + drop + " in your inventory.");
         }
-        return "";
     }
     public Item findItemInInventory(String itemName) {
         for (Item item : inventoryArr) {
