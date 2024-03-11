@@ -64,15 +64,10 @@ public class UserInterface {
                     String itemdescription = userInput.toLowerCase().substring(5);//remove take and leave description
                     System.out.println(adventure.takeItem(itemdescription));
                 } else if(userInput.equalsIgnoreCase("inventory")) { //hvis brugeren taster inventory
-                    ArrayList<Item> inventory = adventure.getInventoryArr();
-                    if (inventory.isEmpty()) { //hvis det er tomt
-                        System.out.println("Ur inventory is empty...");
-                    } else {
-                        System.out.println("Here is your inventory:");
-                        for (Item item : inventory) { //for hvert object item i ivetory
-                            System.out.println(item.getLongName()); //printer longname ud for hvert objekt
-                        }
-                    }
+                    System.out.println(adventure.player().showInventory());
+                } else if (userInput.toLowerCase().startsWith("drop")) {
+                    String itemToDrop = userInput.toLowerCase().substring(5);
+                    System.out.println(adventure.dropItem(itemToDrop));
                 } else {
                     userInput = parseInput(userInput);
                     String message = adventure.movePlayer(userInput);

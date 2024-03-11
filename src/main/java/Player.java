@@ -13,17 +13,7 @@ public class Player {
       //  inventoryArr.add(new Item("tester", "tester")); //tilføj items til player objekt
        // inventoryArr.add(new Item("sword", "A dusty sword"));
     }
-    public String showInventory() { //ved ikke helt om den her virker
-        if(inventoryArr.isEmpty()) {
-            return "empty inventory";
-        } else {
-            String items="";
-            for (Item item : inventoryArr) {
-               items= item.getShortName();
-            }
-            return items;
-        }
-    }
+
     public ArrayList<Item> getInventory() {
         return inventoryArr;
     }
@@ -40,7 +30,17 @@ public class Player {
     public ArrayList<Item> getInventoryArr() { //til at få items i array
         return inventoryArr;
     }
-
+    public String showInventory() {
+        String show = "";
+        if (inventoryArr.isEmpty()) { //hvis det er tomt
+            return ("Ur inventory is empty...");
+        } else {
+            for (Item item : inventoryArr) { //for hvert object item i ivetory
+                show += (item.getLongName()) + ", "; //printer longname ud for hvert objekt
+            }
+        }
+        return "you have collected " + show;
+    }
     public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
         this.inventoryArr = itemInRoomArr;
     }
@@ -56,11 +56,16 @@ public class Player {
             }
         }
     }
-
-
-    public void dropItem(Item item) { //flytter et item method
-        inventoryArr.remove(item); //fjerner item fra array
-        currentRoom.addItem(item); //tilføjer derefter item til det rum man er i
+    public String dropItem(String drop) {
+        Item item = findItemInInventory(drop);
+        if (item != null) {
+            inventoryArr.remove(item);
+            currentRoom.addItem(item);
+            System.out.println("you dropped the " + item.getShortName());
+        } else {
+            return ("you dont have this " + drop + " in ur inventory.");
+        }
+        return "";
     }
     public Item findItemInInventory(String itemName) {
         for (Item item : inventoryArr) { //iterer et item gennem hele inventory

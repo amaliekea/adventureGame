@@ -27,8 +27,9 @@ public class AdventureGame {
     public String takeItem (String description) {
         return player.takeItem(description);
     }
-
-
+    public String dropItem(String drop) {
+      return player.dropItem(drop);
+    }
 
     public String lookPlayer() {
         return player.getCurrentRoom();
