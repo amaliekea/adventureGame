@@ -49,7 +49,7 @@ public class UserInterface {
         while (true) {
             userInput = input.nextLine().toLowerCase();
 
-            switch (userInput.split(" ")[0]) {
+            switch (userInput.split(" ")[0]) { // consider only the first word for switch-case
                 case "help" -> {
                     System.out.println(helpInfo);
                 }
