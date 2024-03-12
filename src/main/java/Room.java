@@ -1,54 +1,35 @@
 import java.util.ArrayList;
 
 public class Room {
-    private String roomName;
-    private String roomDescription;
+    private String name;
+    private String description;
     private Room connectionNorth;
     private Room connectionEast;
     private Room connectionSouth;
     private Room connectionWest;
-    private ArrayList<Item> itemsInRoomArr = new ArrayList<>();
+    private ArrayList<Item> itemInRoomArr = new ArrayList<>(); //opretter arrayliste
 
-    public Room(String roomName, String roomDescription) {
-        this.roomName = roomName;
-        this.roomDescription = roomDescription;
+    public Room(String name, String description) {
+        this.name = name;
+        this.description = description;
         connectionNorth = null;
         connectionEast = null;
         connectionSouth = null;
         connectionWest = null;
     }
-
-    public String getRoomName() {
-        return roomName;
+    public void addItem(Item item) { //tilføj items
+        itemInRoomArr.add(item);
     }
-
-    public String getRoomDescription() { //udskriver description + hvilke items i rum
-        StringBuilder itemsInRoomDescription = new StringBuilder();
-        for (int i=0; i<itemsInRoomArr.size(); i++) {
-            itemsInRoomDescription.append(itemsInRoomArr.get(i).getShortName());
-            if(i< itemsInRoomArr.size()-1) {
-                itemsInRoomDescription.append(" & ");
-            }
-        }
-        if (itemsInRoomArr.isEmpty()) {
-            itemsInRoomDescription = new StringBuilder("no items");
-        }
-        return roomDescription + "\nThis room contains: " + itemsInRoomDescription;
-    }
-
-    public void addItem(Item item) {
-        itemsInRoomArr.add(item);
-    }
-    public Item removeItem(int i) {
-        Item item = itemsInRoomArr.get(i);
-        itemsInRoomArr.remove(i);
+    public Item removeItem(int i) { //fjern items
+        Item item = itemInRoomArr.get(i);
+        itemInRoomArr.remove(i);
         return item;
     }
-    public int searchItem(String itemDescription) { //søger efter objekt i rum
+    public int searchItem(String desciption) { //søger efter objekt i rum
         int count = 0; //tæller antal items der opfylder search
 
-        for (Item i: itemsInRoomArr) { //for hvert item objekt 'i' i itemInRoomArr
-            if (i.getShortName().toLowerCase().contains(itemDescription.toLowerCase())) {
+        for (Item i: itemInRoomArr) { //for hvert item objekt 'i' i itemInRoomArr
+            if (i.getShortName().toLowerCase().contains(desciption.toLowerCase())) {
                 return count;
             }
             count++;
@@ -57,15 +38,41 @@ public class Room {
     }
 
     public ArrayList<Item> getItemInRoomArr() { //til at få items i array
-        return itemsInRoomArr;
+        return itemInRoomArr;
     }
 
     public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
-        this.itemsInRoomArr = itemInRoomArr;
+        this.itemInRoomArr = itemInRoomArr;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() { //udskriver desciption + hvilke items i rum
+        String desc="";
+        for (int i=0; i<itemInRoomArr.size(); i++) {
+            desc += itemInRoomArr.get(i).getShortName();
+            if(i< itemInRoomArr.size()-1) {
+                desc+=", ";
+            }
+        }
+        if (itemInRoomArr.size()==0) {
+            desc = "no items";
+        }
+        return description + "\n This room contains: "+ desc;
+    }
     public Room getConnectionNorth() {
         return connectionNorth;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setConnectionNorth(Room connectionNorth) {

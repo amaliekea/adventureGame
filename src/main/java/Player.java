@@ -10,11 +10,14 @@ public class Player {
         currentRoom = firstRoom;
         wayBlocked = "Be careful, you cannot go this way...";
         inventoryArr = new ArrayList<>();
+        //  inventoryArr.add(new Item("tester", "tester")); //tilføj items til player objekt
+        // inventoryArr.add(new Item("sword", "A dusty sword"));
     }
+
     public ArrayList<Item> getInventory() {
         return inventoryArr;
     }
-    public void removeItem(Item item) {
+    public void removeItem(Item item) { //fjern items
         inventoryArr.remove(item);
     }
     public void addItem(Item item) {
@@ -24,11 +27,9 @@ public class Player {
         inventoryArr.add(item);
     }
 
-    public ArrayList<Item> getItemInRoomArr() {
+    public ArrayList<Item> getInventoryArr() { //til at få items i array
         return inventoryArr;
     }
-
-    public void setItemInRoom(ArrayList<Item> itemInRoomArr) {
     public String showInventory() {
         String show = "";
         if (inventoryArr.isEmpty()) { //hvis det er tomt
@@ -44,21 +45,18 @@ public class Player {
     public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
         this.inventoryArr = itemInRoomArr;
     }
-    public String takeItem(String itemDescription) {
-        int i = currentRoom.searchItem(itemDescription); {
+
+    public String takeItem(String description) {
+        int i = currentRoom.searchItem(description); {
             if (i < 0) {
-                return "The " + itemDescription + " is not in your inventory";
+                return "oops i couldn't find that item";
             } else {
-                Item itemCollected = currentRoom.removeItem(i);
-                inventoryArr.add(itemCollected);
-                return itemDescription + " added to your inventory successfully";
+                Item pickedUpItem= currentRoom.removeItem(i);
+                inventoryArr.add(pickedUpItem);  //tilføjer item til players array
+                return "items added succesfully" ;
             }
         }
     }
-
-    public void dropItem(Item item) {
-        inventoryArr.remove(item);
-        currentRoom.addItem(item);
     public String dropItem(String drop) {
         Item item = findItemInInventory(drop);
         if (item != null) {
@@ -70,18 +68,18 @@ public class Player {
         }
     }
     public Item findItemInInventory(String itemName) {
-        for (Item item : inventoryArr) {
-            if (item.getShortName().equalsIgnoreCase(itemName)) {
-                return item;
+        for (Item item : inventoryArr) { //iterer et item gennem hele inventory
+            if (item.getShortName().equalsIgnoreCase(itemName)) { // hvis item er lig itemname
+                return item; //retuner item hvis fundet
             }
         }
         return null;
     }
     public String getCurrentRoom() {
-        return currentRoom.getRoomName() + ": " + currentRoom.getRoomDescription();
+        return currentRoom.getName() + ": " + currentRoom.getDescription();
     }
 
-    public String movePlayerNorth() {
+    public String movePlayerNorth() { //har delt metoden op i 4
         if (currentRoom.getConnectionNorth() != null) {
             currentRoom = currentRoom.getConnectionNorth();
             return getCurrentRoom() + "\n" + question;
@@ -116,36 +114,4 @@ public class Player {
             return wayBlocked;
         }
     }
-
-
-    public String movePlayer(String userInput) {
-        if (isValidInput(userInput)) {
-            switch (userInput.toLowerCase()) {
-                case "n":
-                    return movePlayerNorth();
-                case "e":
-                    return movePlayerEast();
-                case "s":
-                    return movePlayerSouth();
-                case "w":
-                    return movePlayerWest();
-                case "look":
-                    return getCurrentRoom();
-            }
-        }
-        return "Invalid input";
-    }
-
-    private boolean isValidInput(String userInput) {
-        return userInput.equalsIgnoreCase("n") ||
-                userInput.equalsIgnoreCase("e") ||
-                userInput.equalsIgnoreCase("s") ||
-                userInput.equalsIgnoreCase("w") ||
-                userInput.equalsIgnoreCase("look");
-    }
 }
-
-
-
-
-

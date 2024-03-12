@@ -23,8 +23,8 @@ public class Map {
 
         firstRoom = room1;
 
-        room1.setConnectionEast(room2);
-        room1.setConnectionSouth(room4);
+        room1.setConnectionEast(room2); //er blevet nødt til at sætte connections sådan her
+        room1.setConnectionSouth(room4); //da de førhen blev sat til null værdi, da room 1 blev sat først og brugte room 2 og 4, der først blev sat bagefter.
 
         room2.setConnectionWest(room1);
         room2.setConnectionEast(room3);
@@ -51,7 +51,7 @@ public class Map {
         room9.setConnectionWest(room8);
 
         room1.addItem(new Item("a shiny lamp", "lamp"));
-        room1.addItem(new Item("a dangerous animal", "animal"));
+        room1.addItem(new Item("a danger dog", "dog"));
         room2.addItem(new Item("a gold knife","knife"));
         room3.addItem(new Item("a diamond pickaxe","pickaxe"));
     }
