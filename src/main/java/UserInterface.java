@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -30,7 +29,6 @@ public class UserInterface {
     }
 
     public void startGame() {
-        //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
         String helpInfo = "Enter north, east, south or west to navigate \nEnter \"look\" to get room information \nEnter \"exit\" to quit the game";
         String exit = "Exiting game...";
 
@@ -50,9 +48,8 @@ public class UserInterface {
             userInput = input.nextLine().toLowerCase();
 
             switch (userInput.split(" ")[0]) {
-                case "help" -> {
+                case "help" ->
                     System.out.println(helpInfo);
-                }
                 case "exit" -> {
                     System.out.println(exit);
                     System.exit(0);
@@ -61,8 +58,8 @@ public class UserInterface {
                     System.out.println(adventure.lookPlayer());
                 }
                 case "take" -> {
-                    String itemdescription = userInput.toLowerCase().substring(5);
-                    System.out.println(adventure.takeItem(itemdescription));
+                    String itemDescription = userInput.toLowerCase().substring(5);
+                    System.out.println(adventure.takeItem(itemDescription));
                 }
                 case "inventory" -> {
                     System.out.println(adventure.showInventory());
@@ -80,35 +77,24 @@ public class UserInterface {
         }
     }
 
-public String parseInput(String userInput) { //delt op da det tager alt brugerinput
-    if (userInput.equalsIgnoreCase("exit")) { //hvis bruger input lig exit
-        return "exit"; //hvis det er retuner exit
+    public String parseInput(String userInput) {
+        switch (userInput.toLowerCase()) {
+            case "north", "n", "go north" -> {
+                return "n";
+            }
+            case "east", "e", "go east" -> {
+                return "e";
+            }
+            case "west", "w", "go west" -> {
+                return "w";
+            }
+            case "south", "s", "go south" -> {
+                return "s";
+            }
+            default -> {
+                return "";
+            }
+        }
     }
-    if (userInput.equalsIgnoreCase("look") || userInput.equalsIgnoreCase("l")) {
-        return "look";
-    }
-    if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("h")) {
-        return "help";
-    }
-    if (userInput.equalsIgnoreCase("north") || userInput.equalsIgnoreCase("n")
-            || userInput.equalsIgnoreCase("go north")) {
-        return "n";
-    }
-    if (userInput.equalsIgnoreCase("east") || userInput.equalsIgnoreCase("e")
-            || userInput.equalsIgnoreCase("go east")) {
-        return "e";
-    }
-    if ((userInput.equalsIgnoreCase("west") || userInput.equalsIgnoreCase("w")
-            || userInput.equalsIgnoreCase("go west"))) {
-        return "w";
-    }
-    if (userInput.equalsIgnoreCase("south") || userInput.equalsIgnoreCase("s")
-            || userInput.equalsIgnoreCase("go south")) {
-        return "s";
-    }
-    if (userInput.equalsIgnoreCase("help") || userInput.equalsIgnoreCase("help me") || userInput.equalsIgnoreCase("info") || userInput.equalsIgnoreCase("h")) {
-        return "help";
-    }
-    return "";
 }
-}
+

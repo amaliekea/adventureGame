@@ -10,10 +10,6 @@ public class AdventureGame {
         player = new Player(maps.getFirstRoom());
 
     }
-    public Player player() {
-        // retuner Player instance
-        return this.player;
-    }
 
     public String getCurrentRoom() {
         return player.getCurrentRoom();
@@ -21,14 +17,14 @@ public class AdventureGame {
     public ArrayList<Item> getInventory() {
         return player.getInventory();
     }
-    public ArrayList<Item> getInventoryArr() {
-        return player.getInventoryArr();
+    public ArrayList<Item> getInventoryList() {
+        return player.getInventoryList();
     }
-    public String takeItem (String description) {
-        return player.takeItem(description);
+    public String takeItem (String itemDescription) {
+        return player.takeItem(itemDescription);
     }
-    public String dropItem(String drop) {
-        return player.dropItem(drop);
+    public String dropItem(String itemToDrop) {
+        return player.dropItem(itemToDrop);
     }
     public String showInventory() {
         return player.showInventory();
@@ -36,21 +32,11 @@ public class AdventureGame {
 
     public String lookPlayer() {
         return player.getCurrentRoom();
-        //return player.currentRoomDescription();
     }
 
     public String movePlayer(String userInput) {
-        if (userInput.equalsIgnoreCase("n")) {
-            return player.movePlayerNorth();
-        } else if (userInput.equalsIgnoreCase("e")) {
-            return player.movePlayerEast();
-        } else if (userInput.equalsIgnoreCase("s")) {
-            return player.movePlayerSouth();
-        } else if (userInput.equalsIgnoreCase("w")) {
-            return player.movePlayerWest();
-        } else if (userInput.equalsIgnoreCase("look")) {
-            return player.getCurrentRoom();
-        }
-        return "";
+       player.movePlayer(userInput);
+       return "";
     }
+
 }

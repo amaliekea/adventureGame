@@ -3,83 +3,81 @@ import java.util.ArrayList;
 public class Player {
     private Room currentRoom;
     private String wayBlocked;
-    private ArrayList<Item> inventoryArr;
-    private String question = "Which way do you wish to travel?";
+    private ArrayList<Item> inventoryList;
+    private String question = "What do you wish to do?";
 
     public Player(Room firstRoom) {
         currentRoom = firstRoom;
         wayBlocked = "Be careful, you cannot go this way...";
-        inventoryArr = new ArrayList<>();
-        //  inventoryArr.add(new Item("tester", "tester")); //tilføj items til player objekt
-        // inventoryArr.add(new Item("sword", "A dusty sword"));
+        inventoryList = new ArrayList<>();
     }
 
     public ArrayList<Item> getInventory() {
-        return inventoryArr;
+        return inventoryList;
     }
-    public void removeItem(Item item) { //fjern items
-        inventoryArr.remove(item);
+    public void removeItem(Item item) {
+        inventoryList.remove(item);
     }
     public void addItem(Item item) {
-        inventoryArr.add(item);
+        inventoryList.add(item);
     }
     public void takeItem(Item item) {
-        inventoryArr.add(item);
+        inventoryList.add(item);
     }
 
-    public ArrayList<Item> getInventoryArr() { //til at få items i array
-        return inventoryArr;
+    public ArrayList<Item> getInventoryList() {
+        return inventoryList;
     }
     public String showInventory() {
-        String show = "";
-        if (inventoryArr.isEmpty()) { //hvis det er tomt
-            return ("Ur inventory is empty...");
+        String showItems = "";
+        if (inventoryList.isEmpty()) {
+            return ("Your inventory is empty...");
         } else {
-            for (Item item : inventoryArr) { //for hvert object item i ivetory
-                show += (item.getShortName()) + ", "; //printer longname ud for hvert objekt
+            for (Item item : inventoryList) {
+                showItems += (item.getShortName()) + ", ";
             }
-            show = show.substring(0, show.length() - 2) + "."; // for at fjerne det sidste komma
+            showItems = showItems.substring(0, showItems.length() - 2) + "."; //Fjerner det sidste komma
         }
-        return "you have collected " + show;
+        return "You have collected: " + showItems;
     }
-    public void setItemInRoom(ArrayList<Item> itemInRoomArr) { //til at sætte items i arr
-        this.inventoryArr = itemInRoomArr;
+    public void setItemInRoom(ArrayList<Item> itemInRoomList) {
+        this.inventoryList = itemInRoomList;
     }
 
-    public String takeItem(String description) {
-        int i = currentRoom.searchItem(description); {
+    public String takeItem(String itemDescription) {
+        int i = currentRoom.searchItem(itemDescription); {
             if (i < 0) {
-                return "oops i couldn't find that item";
+                return "The item you are looking for is not in your inventory";
             } else {
-                Item pickedUpItem= currentRoom.removeItem(i);
-                inventoryArr.add(pickedUpItem);  //tilføjer item til players array
-                return "items added succesfully" ;
+                Item collectedItem = currentRoom.removeItem(i);
+                inventoryList.add(collectedItem);
+                return collectedItem.getShortName() + " is now part of your inventory" ;
             }
         }
     }
-    public String dropItem(String drop) {
-        Item item = findItemInInventory(drop);
+    public String dropItem(String itemToDrop) {
+        Item item = findItemInInventory(itemToDrop);
         if (item != null) {
-            inventoryArr.remove(item);
+            inventoryList.remove(item);
             currentRoom.addItem(item);
-            return ("you dropped the " + item.getShortName());
+            return ("You dropped the " + item.getShortName());
         } else {
-            return ("you dont have this " + drop + " in your inventory.");
+            return ("You dont have this " + itemToDrop + " in your inventory");
         }
     }
     public Item findItemInInventory(String itemName) {
-        for (Item item : inventoryArr) { //iterer et item gennem hele inventory
-            if (item.getShortName().equalsIgnoreCase(itemName)) { // hvis item er lig itemname
-                return item; //retuner item hvis fundet
+        for (Item item : inventoryList) {
+            if (item.getShortName().equalsIgnoreCase(itemName)) {
+                return item;
             }
         }
         return null;
     }
     public String getCurrentRoom() {
-        return currentRoom.getName() + ": " + currentRoom.getDescription();
+        return currentRoom.getRoomName() + ": " + currentRoom.getRoomDescription();
     }
 
-    public String movePlayerNorth() { //har delt metoden op i 4
+    public String movePlayerNorth() {
         if (currentRoom.getConnectionNorth() != null) {
             currentRoom = currentRoom.getConnectionNorth();
             return getCurrentRoom() + "\n" + question;
@@ -114,4 +112,36 @@ public class Player {
             return wayBlocked;
         }
     }
+
+
+    public String movePlayer(String userInput) {
+        if (isValidInput(userInput)) {
+            switch (userInput.toLowerCase()) {
+                case "n":
+                    return movePlayerNorth();
+                case "e":
+                    return movePlayerEast();
+                case "s":
+                    return movePlayerSouth();
+                case "w":
+                    return movePlayerWest();
+                case "look":
+                    return getCurrentRoom();
+            }
+        }
+        return "Invalid input";
+    }
+
+    private boolean isValidInput(String userInput) {
+        return  userInput.equalsIgnoreCase("n") ||
+                userInput.equalsIgnoreCase("e") ||
+                userInput.equalsIgnoreCase("s") ||
+                userInput.equalsIgnoreCase("w") ||
+                userInput.equalsIgnoreCase("look");
+    }
 }
+
+
+
+
+
