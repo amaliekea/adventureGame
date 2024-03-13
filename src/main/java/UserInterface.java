@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -29,6 +30,7 @@ public class UserInterface {
     }
 
     public void startGame() {
+        //Opsætter et do-while loop, så vi kan bevæge os rundt i rummene (se movePlayer metode i Adventure klassen)
         String helpInfo = "Enter north, east, south or west to navigate \nEnter \"look\" to get room information \nEnter \"exit\" to quit the game";
         String exit = "Exiting game...";
         String question = "What do you wish to do?";
@@ -48,9 +50,10 @@ public class UserInterface {
         while (true) {
             userInput = input.nextLine().toLowerCase();
 
-            switch (userInput.split(" ")[0]) {
-                case "help" ->
+            switch (userInput.split(" ")[0]) { // consider only the first word for switch-case
+                case "help" -> {
                     System.out.println(helpInfo);
+                }
                 case "exit" -> {
                     System.out.println(exit);
                     System.exit(0);
@@ -59,8 +62,8 @@ public class UserInterface {
                     System.out.println(adventure.lookPlayer());
                 }
                 case "take" -> {
-                    String itemDescription = userInput.toLowerCase().substring(5);
-                    System.out.println(adventure.takeItem(itemDescription));
+                    String itemdescription = userInput.toLowerCase().substring(5);
+                    System.out.println(adventure.takeItem(itemdescription));
                 }
                 case "inventory" -> {
                     System.out.println(adventure.showInventory());

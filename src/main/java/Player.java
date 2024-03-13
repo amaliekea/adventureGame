@@ -95,7 +95,7 @@ public class Player {
                 return "The " + foodDescription + " is not edible";
             }
         }
-        return null;
+        return "You can't eat this";
     }
 
 
