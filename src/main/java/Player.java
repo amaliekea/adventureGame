@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Player {
+    private double playerHealthPoints;
     private Room currentRoom;
     private String wayBlocked;
     private ArrayList<Item> inventoryList;
@@ -15,12 +16,15 @@ public class Player {
     public ArrayList<Item> getInventory() {
         return inventoryList;
     }
+
     public void removeItem(Item item) {
         inventoryList.remove(item);
     }
+
     public void addItem(Item item) {
         inventoryList.add(item);
     }
+
     public void takeItem(Item item) {
         inventoryList.add(item);
     }
@@ -28,6 +32,7 @@ public class Player {
     public ArrayList<Item> getInventoryList() {
         return inventoryList;
     }
+
     public String showInventory() {
         String showItems = "";
         if (inventoryList.isEmpty()) {
@@ -40,21 +45,24 @@ public class Player {
         }
         return "You have collected: " + showItems;
     }
+
     public void setItemInRoom(ArrayList<Item> itemInRoomList) {
         this.inventoryList = itemInRoomList;
     }
 
     public String takeItem(String itemDescription) {
-        int i = currentRoom.searchItem(itemDescription); {
+        int i = currentRoom.searchItem(itemDescription);
+        {
             if (i < 0) {
-                return "The item you are looking for is not in your inventory";
+                return "The item you are looking for is not in this room";
             } else {
                 Item collectedItem = currentRoom.removeItem(i);
                 inventoryList.add(collectedItem);
-                return collectedItem.getShortName() + " is now part of your inventory" ;
+                return collectedItem.getShortName() + " is now part of your inventory";
             }
         }
     }
+
     public String dropItem(String itemToDrop) {
         Item item = findItemInInventory(itemToDrop);
         if (item != null) {
@@ -65,6 +73,7 @@ public class Player {
             return ("You dont have this " + itemToDrop + " in your inventory");
         }
     }
+
     public Item findItemInInventory(String itemName) {
         for (Item item : inventoryList) {
             if (item.getShortName().equalsIgnoreCase(itemName)) {
@@ -73,6 +82,23 @@ public class Player {
         }
         return null;
     }
+
+    public String eatFood(String foodDescription) {
+        int i = currentRoom.searchItem(foodDescription);
+        if (i < 0) {
+            return "The food you are looking for is not in this room";
+        } else if (currentRoom.removeItem(i) instanceof Food food) {
+            if (food.isEdible()) {
+                playerHealthPoints += food.getHealthPoints();
+                return "You have eaten the " + foodDescription + " and your health is now " + playerHealthPoints + " points";
+            } else {
+                return "The " + foodDescription + " is not edible";
+            }
+        }
+        return null;
+    }
+
+
     public String getCurrentRoom() {
         return currentRoom.getRoomName() + ": " + currentRoom.getRoomDescription();
     }
@@ -133,7 +159,7 @@ public class Player {
     }
 
     private boolean isValidInput(String userInput) {
-        return  userInput.equalsIgnoreCase("n") ||
+        return userInput.equalsIgnoreCase("n") ||
                 userInput.equalsIgnoreCase("e") ||
                 userInput.equalsIgnoreCase("s") ||
                 userInput.equalsIgnoreCase("w") ||

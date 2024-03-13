@@ -31,6 +31,8 @@ public class UserInterface {
     public void startGame() {
         String helpInfo = "Enter north, east, south or west to navigate \nEnter \"look\" to get room information \nEnter \"exit\" to quit the game";
         String exit = "Exiting game...";
+        String question = "What do you wish to do?";
+        String userInput;
 
         System.out.println("As your spacecraft descends onto the alien soil of a new planet, anticipation fills the air.");
         System.out.println("You step out into a world of surreal landscapes and unfamiliar sounds, the sky above swirling with colors unknown.");
@@ -40,9 +42,8 @@ public class UserInterface {
         System.out.println("If you wish to go forward, press ENTER. But beware of detours...");
         input.nextLine();
         System.out.println(adventure.getCurrentRoom());
-        System.out.println("What do you wish to do?");
+        System.out.println(question);
 
-        String userInput;
 
         while (true) {
             userInput = input.nextLine().toLowerCase();
@@ -68,6 +69,10 @@ public class UserInterface {
                     String itemToDrop = userInput.toLowerCase().substring(5);
                     System.out.println(adventure.dropItem(itemToDrop));
                 }
+                case "eat" -> {
+                    String foodDescription = userInput.toLowerCase().substring(4);
+                    System.out.println(adventure.eatFood(foodDescription));
+                }
                 default -> {
                     userInput = parseInput(userInput);
                     String message = adventure.movePlayer(userInput);
@@ -75,6 +80,7 @@ public class UserInterface {
                 }
             }
         }
+
     }
 
     public String parseInput(String userInput) {

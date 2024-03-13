@@ -26,6 +26,11 @@ public class AdventureGame {
     public String dropItem(String itemToDrop) {
         return player.dropItem(itemToDrop);
     }
+
+    public String eatFood(String foodDescription) {
+        return player.eatFood(foodDescription);
+    }
+
     public String showInventory() {
         return player.showInventory();
     }
