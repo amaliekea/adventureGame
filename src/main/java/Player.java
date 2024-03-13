@@ -138,36 +138,4 @@ public class Player {
             return wayBlocked;
         }
     }
-
-
-    public String movePlayer(String userInput) {
-        if (isValidInput(userInput)) {
-            switch (userInput.toLowerCase()) {
-                case "n":
-                    return movePlayerNorth();
-                case "e":
-                    return movePlayerEast();
-                case "s":
-                    return movePlayerSouth();
-                case "w":
-                    return movePlayerWest();
-                case "look":
-                    return getCurrentRoom();
-            }
-        }
-        return "Invalid input";
-    }
-
-    private boolean isValidInput(String userInput) {
-        return userInput.equalsIgnoreCase("n") ||
-                userInput.equalsIgnoreCase("e") ||
-                userInput.equalsIgnoreCase("s") ||
-                userInput.equalsIgnoreCase("w") ||
-                userInput.equalsIgnoreCase("look");
-    }
 }
-
-
-
-
-

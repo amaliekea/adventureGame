@@ -49,8 +49,7 @@ public class UserInterface {
             userInput = input.nextLine().toLowerCase();
 
             switch (userInput.split(" ")[0]) {
-                case "help" ->
-                    System.out.println(helpInfo);
+                case "help" -> System.out.println(helpInfo);
                 case "exit" -> {
                     System.out.println(exit);
                     System.exit(0);
@@ -73,34 +72,28 @@ public class UserInterface {
                     String foodDescription = userInput.toLowerCase().substring(4);
                     System.out.println(adventure.eatFood(foodDescription));
                 }
-                default -> {
-                    userInput = parseInput(userInput);
-                    String message = adventure.movePlayer(userInput);
+                case "north", "n", "go north" -> {
+                    String message = adventure.player.movePlayerNorth();
                     System.out.println(message);
+                }
+                case "east", "e", "go east" -> {
+                    String message = adventure.player.movePlayerEast();
+                    System.out.println(message);
+                }
+                case "west", "w", "go west" -> {
+                    String message = adventure.player.movePlayerWest();
+                    System.out.println(message);
+                }
+                case "south", "s", "go south" -> {
+                    String message = adventure.player.movePlayerSouth();
+                    System.out.println(message);
+                }
+                default -> {
+                    System.out.println("Invalid input");
                 }
             }
         }
 
-    }
-
-    public String parseInput(String userInput) {
-        switch (userInput.toLowerCase()) {
-            case "north", "n", "go north" -> {
-                return "n";
-            }
-            case "east", "e", "go east" -> {
-                return "e";
-            }
-            case "west", "w", "go west" -> {
-                return "w";
-            }
-            case "south", "s", "go south" -> {
-                return "s";
-            }
-            default -> {
-                return "";
-            }
-        }
     }
 }
 

@@ -39,9 +39,4 @@ public class AdventureGame {
         return player.getCurrentRoom();
     }
 
-    public String movePlayer(String userInput) {
-       player.movePlayer(userInput);
-       return "";
-    }
-
 }
