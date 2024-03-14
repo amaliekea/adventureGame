@@ -88,14 +88,21 @@ public class Player {
         if (i < 0) {
             return "The food you are looking for is not in this room";
         } else if (currentRoom.removeItem(i) instanceof Food food) {
-            if (food.isEdible()) {
-                playerHealthPoints += food.getHealthPoints();
-                return "You have eaten the " + foodDescription + " and your health is now " + playerHealthPoints + " points";
-            } else {
-                return "The " + foodDescription + " is not edible";
-            }
+            playerHealthPoints += food.getHealthPoints();
+            return "You have eaten the " + foodDescription + " and your health is now " + playerHealthPoints + " points";
         }
-        return "You can't eat this";
+        return "The " + foodDescription + " is not edible";
+    }
+
+    public String drinkLiquid(String liquidDescription) {
+        int i = currentRoom.searchItem(liquidDescription);
+        if (i < 0) {
+            return "The liquid you are looking for is not in this room";
+        } else if (currentRoom.removeItem(i) instanceof Liquid liquid) {
+            playerHealthPoints += liquid.getHealthPoints();
+            return "You have drunk the " + liquidDescription + " and your health is now " + playerHealthPoints + " points";
+        }
+        return "The " + liquidDescription + " is not consumable";
     }
 
 
@@ -139,3 +146,4 @@ public class Player {
         }
     }
 }
+

@@ -31,6 +31,10 @@ public class AdventureGame {
         return player.eatFood(foodDescription);
     }
 
+    public String drinkLiquid(String liquidDescription) {
+        return player.drinkLiquid(liquidDescription);
+    }
+
     public String showInventory() {
         return player.showInventory();
     }

@@ -25,15 +25,15 @@ public class Room {
     public String getRoomDescription() {
         String itemDescription = "";
         for (int i = 0; i < itemsInRoomList.size(); i++) {
-            itemDescription += itemsInRoomList.get(i).getShortName();
+            itemDescription += itemsInRoomList.get(i).getLongName();
             if (i < itemsInRoomList.size() - 1) {
-                itemDescription += " & ";
+                itemDescription += ", ";
             }
         }
-        if (itemsInRoomList.isEmpty()) {
-            itemDescription = "This room contains no items";
+        if (!itemsInRoomList.isEmpty()) {
+            return roomDescription + "\nThis room contains: " + itemDescription;
         }
-        return roomDescription + "\nThis room contains: " + itemDescription;
+        return itemDescription = "This room contains no items";
     }
 
     public Room getConnectionNorth() {
