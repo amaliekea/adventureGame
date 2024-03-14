@@ -72,21 +72,18 @@ public class Room {
         itemsInRoomList.add(item);
     }
 
-    public Item removeItem(int i) {
-        Item item = itemsInRoomList.get(i);
-        itemsInRoomList.remove(i);
+    public Item removeItem(String itemDescription) {
+        Item item = searchItem(itemDescription);
+        itemsInRoomList.remove(item);
         return item;
     }
 
-    public int searchItem(String itemDescription) {
-        int count = 0;
-
-        for (Item i : itemsInRoomList) {
-            if (i.getShortName().toLowerCase().contains(itemDescription.toLowerCase())) {
-                return count;
+    public Item searchItem(String itemDescription) {
+        for (Item item : itemsInRoomList) {
+            if (item.getShortName().equalsIgnoreCase(itemDescription)) {
+                return item;
             }
-            count++;
         }
-        return -1;
+        return null;
     }
 }

@@ -25,10 +25,6 @@ public class Player {
         inventoryList.add(item);
     }
 
-    public void takeItem(Item item) {
-        inventoryList.add(item);
-    }
-
     public ArrayList<Item> getInventoryList() {
         return inventoryList;
     }
@@ -46,17 +42,13 @@ public class Player {
         return "You have collected: " + showItems;
     }
 
-    public void setItemInRoom(ArrayList<Item> itemInRoomList) {
-        this.inventoryList = itemInRoomList;
-    }
-
     public String takeItem(String itemDescription) {
-        int i = currentRoom.searchItem(itemDescription);
+        Item item = currentRoom.searchItem(itemDescription);
         {
-            if (i < 0) {
+            if (item.getShortName().equalsIgnoreCase(itemDescription)) {
                 return "The item you are looking for is not in this room";
             } else {
-                Item collectedItem = currentRoom.removeItem(i);
+                Item collectedItem = currentRoom.removeItem(itemDescription);
                 inventoryList.add(collectedItem);
                 return collectedItem.getShortName() + " is now part of your inventory";
             }
@@ -84,10 +76,10 @@ public class Player {
     }
 
     public String eatFood(String foodDescription) {
-        int i = currentRoom.searchItem(foodDescription);
-        if (i < 0) {
+        Item item = currentRoom.searchItem(foodDescription);
+        if (!item.getShortName().equalsIgnoreCase(foodDescription)) {
             return "The food you are looking for is not in this room";
-        } else if (currentRoom.removeItem(i) instanceof Food food) {
+        } else if (currentRoom.removeItem(foodDescription) instanceof Food food) {
             playerHealthPoints += food.getHealthPoints();
             return "You have eaten the " + foodDescription + " and your health is now " + playerHealthPoints + " points";
         }
@@ -95,10 +87,10 @@ public class Player {
     }
 
     public String drinkLiquid(String liquidDescription) {
-        int i = currentRoom.searchItem(liquidDescription);
-        if (i < 0) {
+        Item item = currentRoom.searchItem(liquidDescription);
+        if (!item.getShortName().equalsIgnoreCase(liquidDescription)) {
             return "The liquid you are looking for is not in this room";
-        } else if (currentRoom.removeItem(i) instanceof Liquid liquid) {
+        } else if (currentRoom.removeItem(liquidDescription) instanceof Liquid liquid) {
             playerHealthPoints += liquid.getHealthPoints();
             return "You have drunk the " + liquidDescription + " and your health is now " + playerHealthPoints + " points";
         }

@@ -61,7 +61,7 @@ public class Map {
 
         room4.addItem(new Liquid("a magical potion", "potion", 115));
         room5.addItem(new Liquid("a healing potion", "healing", 30));
-        room2.addItem(new Liquid("a double shot espressp", "espresso", 50));
+        room2.addItem(new Liquid("a double shot espresso", "espresso", 50));
 
     }
 
