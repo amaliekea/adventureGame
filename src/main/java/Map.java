@@ -58,7 +58,10 @@ public class Map {
         room1.addItem(new Food("a crispy apple", "apple", 50));
         room2.addItem(new Food("a poisonous mushroom", "mushroom", -40));
         room3.addItem(new Food("a stale bread", "bread", 10));
+
         room4.addItem(new Liquid("a magical potion", "potion", 115));
+        room5.addItem(new Liquid("a healing potion", "healing", 30));
+        room2.addItem(new Liquid("a double shot espressp", "espresso", 50));
 
     }
 

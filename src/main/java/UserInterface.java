@@ -39,6 +39,7 @@ public class UserInterface {
         System.out.println("TAKE <item>     - Pick up an object from a room (e.g., 'take knife').");
         System.out.println("DROP <item>     - Drop an item inside a room (e.g., 'drop knife').");
         System.out.println("EAT <item>      - Consume an item for health (e.g., 'eat apple').");
+        System.out.println("DRINK <item>    -Drink an item for nourishment   (e.g, 'drink tea').");
         System.out.println("INVENTORY       - View items in your inventory.\n");
     }
 
