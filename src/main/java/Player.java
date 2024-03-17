@@ -45,12 +45,12 @@ public class Player {
     public String takeItem(String itemDescription) {
         Item item = currentRoom.searchItem(itemDescription);
         {
-            if (item.getShortName().equalsIgnoreCase(itemDescription)) {
+            if (!item.getShortName().equalsIgnoreCase(itemDescription)) {
                 return "The item you are looking for is not in this room";
             } else {
-                Item collectedItem = currentRoom.removeItem(itemDescription);
+                Item collectedItem = currentRoom.removeItem(item);
                 inventoryList.add(collectedItem);
-                return collectedItem.getShortName() + " is now part of your inventory";
+                return "The " + collectedItem.getShortName() + " is now part of your inventory";
             }
         }
     }
@@ -75,29 +75,54 @@ public class Player {
         return null;
     }
 
-    public String eatFood(String foodDescription) {
-        Item item = currentRoom.searchItem(foodDescription);
-        if (!item.getShortName().equalsIgnoreCase(foodDescription)) {
-            return "The food you are looking for is not in this room";
-        } else if (currentRoom.removeItem(foodDescription) instanceof Food food) {
-            playerHealthPoints += food.getHealthPoints();
-            return "You have eaten the " + foodDescription + " and your health is now " + playerHealthPoints + " points";
+    public String consumeItem(String itemDescription) {
+        Item item = currentRoom.searchItem(itemDescription);
+        Item item1 = findItemInInventory(itemDescription);
+
+        // Check if the item is in the room or inventory
+        if (item == null && item1 == null) {
+            return "The item you are looking for is neither in the room nor part of your inventory.";
         }
-        return "The " + foodDescription + " is not edible";
-    }
 
-    public String drinkLiquid(String liquidDescription) {
-        Item item = currentRoom.searchItem(liquidDescription);
-        if (!item.getShortName().equalsIgnoreCase(liquidDescription)) {
-            return "The liquid you are looking for is not in this room";
-        } else if (currentRoom.removeItem(liquidDescription) instanceof Liquid liquid) {
-            playerHealthPoints += liquid.getHealthPoints();
-            return "You have drunk the " + liquidDescription + " and your health is now " + playerHealthPoints + " points";
+        // Determine which item reference to use
+        Consumables consumable = null;
+        if (item instanceof Consumables) {
+            consumable = (Consumables) item;
+        } else if (item1 instanceof Consumables) {
+            consumable = (Consumables) item1;
+        } else {
+            return "The item is not consumable.";
         }
-        return "The " + liquidDescription + " is not consumable";
+
+        // Check if it's food or drink
+        if (consumable instanceof Food) {
+            if (consumable.getHealthPoints() < 0) {
+                return "Warning: Consuming this food may have negative effects on your health!";
+            } else {
+                playerHealthPoints += consumable.getHealthPoints();
+                if (item != null) {
+                    currentRoom.removeItem(item);
+                } else {
+                    removeItem(item1);
+                }
+                return "You have consumed the " + consumable.getShortName() + ". Your HP is now " + playerHealthPoints;
+            }
+        } else if (consumable instanceof Liquid) {
+            if (consumable.getHealthPoints() < 0) {
+                return "Warning: Consuming this drink may have negative effects on your health!";
+            } else {
+                playerHealthPoints += consumable.getHealthPoints();
+                if (item != null) {
+                    currentRoom.removeItem(item);
+                } else {
+                    removeItem(item1);
+                }
+                return "You have consumed the " + consumable.getShortName() + ". Your HP is now " + playerHealthPoints;
+            }
+        } else {
+            return "The item is neither food nor drink.";
+        }
     }
-
-
     public String getCurrentRoom() {
         return currentRoom.getRoomName() + ": " + currentRoom.getRoomDescription();
     }

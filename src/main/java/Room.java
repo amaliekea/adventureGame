@@ -72,8 +72,7 @@ public class Room {
         itemsInRoomList.add(item);
     }
 
-    public Item removeItem(String itemDescription) {
-        Item item = searchItem(itemDescription);
+    public Item removeItem(Item item) {
         itemsInRoomList.remove(item);
         return item;
     }

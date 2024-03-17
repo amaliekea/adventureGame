@@ -86,12 +86,12 @@ public class UserInterface {
                     System.out.println(adventure.dropItem(itemToDrop));
                 }
                 case "eat" -> {
-                    String foodDescription = userInput.toLowerCase().substring(4);
-                    System.out.println(adventure.eatFood(foodDescription));
+                    String itemDescription = userInput.toLowerCase().substring(4);
+                    System.out.println(adventure.consumeItem(itemDescription));
                 }
                 case "drink" -> {
-                    String liquidDescription = userInput.toLowerCase().substring(6);
-                    System.out.println(adventure.drinkLiquid(liquidDescription));
+                    String itemDescription = userInput.toLowerCase().substring(6);
+                    System.out.println(adventure.consumeItem(itemDescription));
                 }
                 case "go" -> {
                     String direction = userInput.split(" ", 2)[1];
