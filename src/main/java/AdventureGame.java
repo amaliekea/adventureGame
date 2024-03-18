@@ -39,4 +39,8 @@ public class AdventureGame {
         return player.getCurrentRoom();
     }
 
+    public String equipWeapon(String itemDescription) {
+        return player.equipWeapon(itemDescription);
+    }
+
 }

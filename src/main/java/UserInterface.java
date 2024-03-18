@@ -39,7 +39,8 @@ public class UserInterface {
         System.out.println("TAKE <item>     - Pick up an object from a room (e.g., 'take knife').");
         System.out.println("DROP <item>     - Drop an item inside a room (e.g., 'drop knife').");
         System.out.println("EAT <item>      - Consume an item for health (e.g., 'eat apple').");
-        System.out.println("DRINK <item>    -Drink an item for nourishment   (e.g, 'drink tea').");
+        System.out.println("DRINK <item>    - Drink an item for nourishment (e.g, 'drink tea').");
+        System.out.println("EQUIP <weapon>  - Equip a weapon that takes ammunition to get ready for battle (e.g., 'equip bow').");
         System.out.println("INVENTORY       - View items in your inventory.\n");
     }
 
@@ -92,6 +93,10 @@ public class UserInterface {
                 case "drink" -> {
                     String itemDescription = userInput.toLowerCase().substring(6);
                     System.out.println(adventure.consumeItem(itemDescription));
+                }
+                case "equip" -> {
+                    String itemDescription = userInput.toLowerCase().substring(6);
+                    System.out.println(adventure.equipWeapon(itemDescription));
                 }
                 case "go" -> {
                     String direction = userInput.split(" ", 2)[1];

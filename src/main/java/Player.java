@@ -85,7 +85,7 @@ public class Player {
         }
 
         // Determine which item reference to use
-        Consumables consumable = null;
+        Consumables consumable;
         if (item instanceof Consumables) {
             consumable = (Consumables) item;
         } else if (item1 instanceof Consumables) {
@@ -123,6 +123,29 @@ public class Player {
             return "The item is neither food nor drink.";
         }
     }
+
+    public String equipWeapon(String itemDescription) {
+        Item item = findItemInInventory(itemDescription);
+
+        // Check if the weapon is part of the inventory
+        if (item == null) {
+            return "The item you are looking for is not part of your inventory";
+        }
+
+        // Check if the item is a weapon
+        if (item instanceof Weapon) {
+            item = findItemInInventory(itemDescription);
+
+            // Determine if the weapon takes ammunition
+            if (((Weapon) item).hasAmmunition) {
+                return "The " + item.getShortName() + " is now equipped and ready to use" + "\nYou have " + ((RangedWeapon) item).getUses() + " tries";
+            } else {
+                return "The " + item.getShortName() + " does not need ammunition, you can use it as is";
+            }
+        }
+        return "The item you are trying to use is not a weapon";
+    }
+
     public String getCurrentRoom() {
         return currentRoom.getRoomName() + ": " + currentRoom.getRoomDescription();
     }

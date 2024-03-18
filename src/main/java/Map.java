@@ -52,8 +52,11 @@ public class Map {
 
         room1.addItem(new Item("a shiny lamp", "lamp"));
         room1.addItem(new Item("a dangerous dog", "dog"));
-        room2.addItem(new Item("a golden knife", "knife"));
-        room3.addItem(new Item("a diamond pickaxe", "pickaxe"));
+
+        room2.addItem(new MeleeWeapon("a golden knife", "knife", 35));
+        room3.addItem(new MeleeWeapon("a diamond pickaxe", "pickaxe", 45));
+        room8.addItem(new RangedWeapon("a poisonous crossbow", "crossbow", 70, 5));
+        room3.addItem(new RangedWeapon("a shiny pistol", "pistol", 60, 6));
 
         room1.addItem(new Food("a crispy apple", "apple", 50));
         room2.addItem(new Food("a poisonous mushroom", "mushroom", -40));
