@@ -9,8 +9,5 @@ public RangedWeapon(String longName, String shortName, int damage, int amountOfU
     public int getUses() {
         return amountOfUses;
     }
-    public int getDamage() {
-        return damage;
-    }
 
 }

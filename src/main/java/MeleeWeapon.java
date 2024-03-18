@@ -4,8 +4,4 @@ public class MeleeWeapon extends Weapon {
         super(longName, shortName, damage, false);
     }
 
-    public int getDamage() {
-        return damage;
-    }
-
 }

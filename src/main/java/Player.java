@@ -134,8 +134,6 @@ public class Player {
 
         // Check if the item is a weapon
         if (item instanceof Weapon) {
-            item = findItemInInventory(itemDescription);
-
             // Determine if the weapon takes ammunition
             if (((Weapon) item).hasAmmunition) {
                 return "The " + item.getShortName() + " is now equipped and ready to use" + "\nYou have " + ((RangedWeapon) item).getUses() + " tries";
