@@ -41,7 +41,8 @@ public class UserInterface {
         System.out.println("EAT <item>      - Consume an item for health (e.g., 'eat apple').");
         System.out.println("DRINK <item>    - Drink an item for nourishment (e.g, 'drink tea').");
         System.out.println("EQUIP <weapon>  - Equip a weapon that takes ammunition to get ready for battle (e.g., 'equip bow').");
-        System.out.println("INVENTORY       - View items in your inventory.\n");
+        System.out.println("INVENTORY       - View items in your inventory.");
+        System.out.println("HELP            - Takes you back to the commands section.\n");
     }
 
     public void startGame() {

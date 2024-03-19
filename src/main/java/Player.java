@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
 public class Player {
-    private double playerHealthPoints;
+    private int playerHealthPoints;
     private Room currentRoom;
-    private String wayBlocked;
-    private ArrayList<Item> inventoryList;
+    private String wayBlocked = "Be careful, you cannot go this way...";
     private String question = "What do you wish to do?";
+    private ArrayList<Item> inventoryList;
 
     public Player(Room firstRoom) {
         currentRoom = firstRoom;
-        wayBlocked = "Be careful, you cannot go this way...";
         inventoryList = new ArrayList<>();
+        playerHealthPoints = 150;
     }
 
     public ArrayList<Item> getInventory() {
@@ -129,7 +129,7 @@ public class Player {
 
         // Check if the weapon is part of the inventory
         if (item == null) {
-            return "The item you are looking for is not part of your inventory";
+            return "The item you are looking for is not part of your inventory.";
         }
 
         // Check if the item is a weapon
@@ -138,10 +138,20 @@ public class Player {
             if (((Weapon) item).hasAmmunition) {
                 return "The " + item.getShortName() + " is now equipped and ready to use" + "\nYou have " + ((RangedWeapon) item).getUses() + " tries";
             } else {
-                return "The " + item.getShortName() + " does not need ammunition, you can use it as is";
+                return "The " + item.getShortName() + " does not need ammunition, you can use it as is.";
             }
         }
-        return "The item you are trying to use is not a weapon";
+        return "The item you are trying to use is not a weapon.";
+    }
+
+    public String attackEnemy(String enemyDescription) {
+        Enemy enemy = currentRoom.searchEnemy(enemyDescription);
+
+        // Check if the enemy is in the room
+        if (enemyDescription == null) {
+            return "There is no such enemy in this area.";
+        }
+
     }
 
     public String getCurrentRoom() {

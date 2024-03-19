@@ -8,6 +8,7 @@ public class Room {
     private Room connectionSouth;
     private Room connectionWest;
     private ArrayList<Item> itemsInRoomList = new ArrayList<>();
+    private ArrayList<Enemy> enemiesInRoomList = new ArrayList<>();
 
     public Room(String roomName, String roomDescription) {
         this.roomName = roomName;
@@ -31,9 +32,10 @@ public class Room {
             }
         }
         if (!itemsInRoomList.isEmpty()) {
-            return roomDescription + "\nThis room contains: " + itemDescription;
+            return roomDescription + "\nThis area contains: " + itemDescription;
         }
-        return itemDescription = "This room contains no items";
+        itemDescription = "This area contains no items";
+        return roomDescription + "\n" + itemDescription;
     }
 
     public Room getConnectionNorth() {
@@ -84,5 +86,22 @@ public class Room {
             }
         }
         return null;
+    }
+
+    public void addEnemy(Enemy enemy) {
+        enemiesInRoomList.add(enemy);
+    }
+
+    public Enemy removeEnemy(Enemy enemy) {
+        enemiesInRoomList.remove(enemy);
+        return enemy;
+    }
+
+    public Enemy searchEnemy(String enemyDescription) {
+        for (Enemy enemy : enemiesInRoomList) {
+            if (enemy.getType().equalsIgnoreCase(enemyDescription)) {
+                return enemy;
+            }
+        } return null;
     }
 }
