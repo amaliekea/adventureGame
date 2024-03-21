@@ -26,24 +26,21 @@ public class Room {
     public String getRoomDescription() {
         String itemDescription = "";
         String enemyDescription = "";
-        boolean hasItems;
-        boolean hasEnemies;
+        boolean hasItems = !itemsInRoomList.isEmpty();
+        boolean hasEnemies = !enemiesInRoomList.isEmpty();
 
         for (int i = 0; i < itemsInRoomList.size(); i++) {
-            itemDescription = itemsInRoomList.get(i).getLongName();
+            itemDescription += itemsInRoomList.get(i).getLongName();
             if (i < itemsInRoomList.size() - 1) {
                 itemDescription += ", ";
             }
         }
         for (int i = 0; i < enemiesInRoomList.size(); i++) {
-            enemyDescription = enemiesInRoomList.get(i).getType();
+            enemyDescription += enemiesInRoomList.get(i).getType();
             if (i < enemiesInRoomList.size() - 1) {
                 enemyDescription += ", ";
             }
         }
-        hasItems = !itemsInRoomList.isEmpty();
-        hasEnemies = !enemiesInRoomList.isEmpty();
-
         if (hasItems && hasEnemies)
             return roomDescription + "\nThis area contains: " + itemDescription + " & " + enemyDescription;
         if (hasItems) {

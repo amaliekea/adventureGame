@@ -28,6 +28,16 @@ public class Enemy {
 
     public int reduceHealthPoints(int damage) {
         healthPoints -= damage;
+        if (healthPoints < 0) {
+            healthPoints = 0;
+        }
         return healthPoints;
+    }
+
+    public boolean isEnemyDead() {
+        if (getHealthPoints() == 0) {
+            return true;
+        }
+        return false;
     }
 }

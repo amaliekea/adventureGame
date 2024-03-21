@@ -20,5 +20,6 @@ public abstract class Weapon extends Item{
     public int getAmountOfAmmo() {
         return 0;
     }
+
 }
 

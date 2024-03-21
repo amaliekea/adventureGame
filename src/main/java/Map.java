@@ -54,9 +54,9 @@ public class Map {
         room1.addItem(new Item("a fluorescent flower", "flower"));
 
         room2.addItem(new MeleeWeapon("a golden knife", "knife", 35));
-        room3.addItem(new MeleeWeapon("a diamond pickaxe", "pickaxe", 45));
+        room1.addItem(new MeleeWeapon("a diamond pickaxe", "pickaxe", 45));
         room8.addItem(new RangedWeapon("a poisonous crossbow", "crossbow", 70, 5));
-        room3.addItem(new RangedWeapon("a shiny pistol", "pistol", 60, 6));
+        room1.addItem(new RangedWeapon("a shiny pistol", "pistol", 60, 6));
 
         room1.addItem(new Food("a crispy apple", "apple", 50));
         room2.addItem(new Food("a questionable mushroom", "mushroom", -40));
@@ -66,8 +66,8 @@ public class Map {
         room5.addItem(new Liquid("a healing potion", "healing", 30));
         room2.addItem(new Liquid("a double shot espresso", "espresso", 50));
 
-        room2.addEnemy(new Enemy("Alien", "tall, slender and slimy", 150, new MeleeWeapon("long tentacles with poisonous spikes", "tentacles", 20)));
-        room5.addEnemy(new Enemy("Animal", "tiny, furry and purple", 100, new MeleeWeapon("long, razor sharp claws", "claws", 10)));
+        room1.addEnemy(new Enemy("Alien", "tall, slender and slimy", 150, new MeleeWeapon("long tentacles with poisonous spikes", "tentacles", 20)));
+        room5.addEnemy(new Enemy("Animal", "tiny, furry and purple", 100, new MeleeWeapon("long, razor sharp claws", "claws", 20)));
 
     }
     public Room getFirstRoom() {
