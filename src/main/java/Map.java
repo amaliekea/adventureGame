@@ -51,7 +51,7 @@ public class Map {
         room9.setConnectionWest(room8);
 
         room1.addItem(new Item("a shiny lamp", "lamp"));
-        room1.addItem(new Item("a dangerous dog", "dog"));
+        room1.addItem(new Item("a fluorescent flower", "flower"));
 
         room2.addItem(new MeleeWeapon("a golden knife", "knife", 35));
         room3.addItem(new MeleeWeapon("a diamond pickaxe", "pickaxe", 45));
@@ -59,7 +59,7 @@ public class Map {
         room3.addItem(new RangedWeapon("a shiny pistol", "pistol", 60, 6));
 
         room1.addItem(new Food("a crispy apple", "apple", 50));
-        room2.addItem(new Food("a poisonous mushroom", "mushroom", -40));
+        room2.addItem(new Food("a questionable mushroom", "mushroom", -40));
         room3.addItem(new Food("a stale bread", "bread", 10));
 
         room4.addItem(new Liquid("a magical potion", "potion", 115));

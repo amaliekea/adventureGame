@@ -25,17 +25,34 @@ public class Room {
 
     public String getRoomDescription() {
         String itemDescription = "";
+        String enemyDescription = "";
+        boolean hasItems;
+        boolean hasEnemies;
+
         for (int i = 0; i < itemsInRoomList.size(); i++) {
-            itemDescription += itemsInRoomList.get(i).getLongName();
+            itemDescription = itemsInRoomList.get(i).getLongName();
             if (i < itemsInRoomList.size() - 1) {
                 itemDescription += ", ";
             }
         }
-        if (!itemsInRoomList.isEmpty()) {
+        for (int i = 0; i < enemiesInRoomList.size(); i++) {
+            enemyDescription = enemiesInRoomList.get(i).getType();
+            if (i < enemiesInRoomList.size() - 1) {
+                enemyDescription += ", ";
+            }
+        }
+        hasItems = !itemsInRoomList.isEmpty();
+        hasEnemies = !enemiesInRoomList.isEmpty();
+
+        if (hasItems && hasEnemies)
+            return roomDescription + "\nThis area contains: " + itemDescription + " & " + enemyDescription;
+        if (hasItems) {
             return roomDescription + "\nThis area contains: " + itemDescription;
         }
-        itemDescription = "This area contains no items";
-        return roomDescription + "\n" + itemDescription;
+        if (hasEnemies) {
+            return roomDescription + "\nThis area contains: " + enemyDescription;
+        }
+        return roomDescription + "\nThis area is empty.";
     }
 
     public Room getConnectionNorth() {
@@ -92,9 +109,8 @@ public class Room {
         enemiesInRoomList.add(enemy);
     }
 
-    public Enemy removeEnemy(Enemy enemy) {
+    public void removeEnemy(Enemy enemy) {
         enemiesInRoomList.remove(enemy);
-        return enemy;
     }
 
     public Enemy searchEnemy(String enemyDescription) {
@@ -102,6 +118,7 @@ public class Room {
             if (enemy.getType().equalsIgnoreCase(enemyDescription)) {
                 return enemy;
             }
-        } return null;
+        }
+        return null;
     }
 }

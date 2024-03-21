@@ -26,4 +26,8 @@ public class Enemy {
         return weapon;
     }
 
+    public int reduceHealthPoints(int damage) {
+        healthPoints -= damage;
+        return healthPoints;
+    }
 }

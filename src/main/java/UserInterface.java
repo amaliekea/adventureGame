@@ -41,6 +41,7 @@ public class UserInterface {
         System.out.println("EAT <item>      - Consume an item for health (e.g., 'eat apple').");
         System.out.println("DRINK <item>    - Drink an item for nourishment (e.g, 'drink tea').");
         System.out.println("EQUIP <weapon>  - Equip a weapon that takes ammunition to get ready for battle (e.g., 'equip bow').");
+        System.out.println("ATTACK <enemy>  - Attack an enemy to defeat it (e.g., 'attack alien').");
         System.out.println("INVENTORY       - View items in your inventory.");
         System.out.println("HELP            - Takes you back to the commands section.\n");
     }
@@ -98,6 +99,10 @@ public class UserInterface {
                 case "equip" -> {
                     String itemDescription = userInput.toLowerCase().substring(6);
                     System.out.println(adventure.equipWeapon(itemDescription));
+                }
+                case "attack" -> {
+                    String enemyDescription = userInput.toLowerCase().substring(7);
+                    System.out.println(adventure.attackEnemy(enemyDescription));
                 }
                 case "go" -> {
                     String direction = userInput.split(" ", 2)[1];

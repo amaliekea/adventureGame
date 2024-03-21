@@ -1,13 +1,20 @@
-public class RangedWeapon extends Weapon{
-private int amountOfUses;
+public class RangedWeapon extends Weapon {
+    private int amountOfAmmo;
 
-public RangedWeapon(String longName, String shortName, int damage, int amountOfUses) {
-    super(longName, shortName, damage, true);
-    this.amountOfUses = amountOfUses;
-}
+    public RangedWeapon(String longName, String shortName, int damage, int amountOfAmmo) {
+        super(longName, shortName, damage, true);
+        this.amountOfAmmo = amountOfAmmo;
+    }
 
-    public int getUses() {
-        return amountOfUses;
+    @Override
+    public int getAmountOfAmmo() {
+        return amountOfAmmo;
+    }
+
+    @Override
+    public int reduceAmmo() {
+        amountOfAmmo -= 1;
+        return amountOfAmmo;
     }
 
 }

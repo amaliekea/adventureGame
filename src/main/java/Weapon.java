@@ -9,5 +9,16 @@ public abstract class Weapon extends Item{
         this.hasAmmunition = hasAmmunition;
     }
 
+    public boolean isEquipped() {
+        return true;
+    }
+
+    public int reduceAmmo() {
+        return 0;
+    }
+
+    public int getAmountOfAmmo() {
+        return 0;
+    }
 }
 

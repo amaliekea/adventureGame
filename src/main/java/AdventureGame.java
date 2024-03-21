@@ -10,7 +10,6 @@ public class AdventureGame {
         player = new Player(maps.getFirstRoom());
 
     }
-
     public String getCurrentRoom() {
         return player.getCurrentRoom();
     }
@@ -43,4 +42,7 @@ public class AdventureGame {
         return player.equipWeapon(itemDescription);
     }
 
+    public String attackEnemy(String enemyDescription) {
+        return player.attackEnemy(enemyDescription);
+    }
 }
