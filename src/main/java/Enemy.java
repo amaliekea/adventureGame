@@ -1,21 +1,21 @@
 public class Enemy {
-    private String type;
-    private String description;
+    private String longName;
+    private String shortName;
     private int healthPoints;
     private Weapon weapon;
 
-    public Enemy(String type, String description, int healthPoints, Weapon weapon) {
-        this.type = type;
-        this.description = description;
+    public Enemy(String longName, String shortName, int healthPoints, Weapon weapon) {
+        this.longName = longName;
+        this.shortName = shortName;
         this.healthPoints = healthPoints;
         this.weapon = weapon;
     }
 
-    public String getType() {
-        return type;
+    public String getLongName() {
+        return longName;
     }
-    public String getDescription() {
-        return description;
+    public String getShortName() {
+        return shortName;
     }
 
     public int getHealthPoints() {

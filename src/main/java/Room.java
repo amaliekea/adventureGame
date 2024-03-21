@@ -51,7 +51,7 @@ public class Room {
     public String enemiesInRoom() {
         String enemyDescription = "";
         for (int i = 0; i < enemiesInRoomList.size(); i++) {
-            enemyDescription += enemiesInRoomList.get(i).getType();
+            enemyDescription += enemiesInRoomList.get(i).getLongName();
             if (i < enemiesInRoomList.size() - 1) {
                 enemyDescription += ", ";
             }
@@ -118,7 +118,7 @@ public class Room {
 
     public Enemy searchEnemy(String enemyDescription) {
         for (Enemy enemy : enemiesInRoomList) {
-            if (enemy.getType().equalsIgnoreCase(enemyDescription)) {
+            if (enemy.getShortName().equalsIgnoreCase(enemyDescription)) {
                 return enemy;
             }
         }

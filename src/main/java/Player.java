@@ -145,62 +145,6 @@ public class Player {
         return "The " + item.getShortName() + " is not a weapon, choose something else from your inventory.";
     }
 
-   /* public String attackEnemy(String enemyDescription) {
-        Enemy enemy = currentRoom.searchEnemy(enemyDescription);
-        String returnMessage;
-
-        // Check if the player has enough health points
-        if (!(playerHealthPoints <= 0)) {
-
-            // Check if the enemy is in the room
-            if (enemyDescription == null) {
-                return "There is no such enemy in this area.";
-            }
-
-            // Check if the player has a weapon and said weapon is equipped
-            for (Item item : inventoryList) {
-                if (item instanceof Weapon weapon) {
-                    if (weapon.hasAmmunition) {
-                        if (weapon.isEquipped() && weapon.getAmountOfAmmo() > 0) {
-
-                            // Reduce healthPoints by weapon's damage and weapon's ammunition
-                            enemy.reduceHealthPoints(weapon.damage);
-                            weapon.reduceAmmo();
-                            playerHealthPoints -= enemy.getWeapon().damage;
-                            returnMessage = "\nYou attacked the " + enemy.getType() + "." +
-                                    "\nRemaining uses of your weapon: " + weapon.getAmountOfAmmo() + "." +
-                                    "\nYour health: " + playerHealthPoints + "." +
-                                    "\nEnemy's health: " + enemy.getHealthPoints() + ".";
-
-                            // Check if enemy is dead
-                            if (enemy.getHealthPoints() <= 0) {
-                                currentRoom.removeEnemy(enemy);
-                                returnMessage = "\nYou have defeated the " + enemy.getType() + "." +
-                                        "\nYour health is now " + playerHealthPoints + "." +
-                                        "\nNow is a good time to replenish with food and drink.";
-                            }
-                            return returnMessage;
-                        }
-                        return "Need an to equip your weapon with ammunition before you can use it.";
-                    }
-                    // If the weapon is a melee weapon
-                    enemy.reduceHealthPoints(weapon.damage);
-                    playerHealthPoints -= enemy.getWeapon().damage;
-                    return "\nYou attacked the " + enemy.getType() + "." +
-                            "\nYour health: " + playerHealthPoints + "." +
-                            "\nEnemy's health: " + enemy.getHealthPoints() + ".";
-
-                }
-                return "You are not ready for battle. First, get yourself a weapon.";
-            }
-            // Check if player is running low on health points
-            if (playerHealthPoints < 10) {
-                return "Warning! You are close to being defeated. Replenish your health with food or drink.";
-            }
-        }
-        return "You are in no shape to do battle. First replenish with food and drink!";
-    } */
-
     public String attackEnemy(String enemyDescription) {
         Enemy enemy = currentRoom.searchEnemy(enemyDescription);
 
@@ -215,11 +159,9 @@ public class Player {
         }
 
         // Check if the player has a weapon
-        boolean hasWeapon = false;
         for (Item item : inventoryList) {
             if (item instanceof Weapon weapon) {
-                hasWeapon = true;
-                String returnMessage = "You have defeated the " + enemy.getType() + ". \nYour health is now " + playerHealthPoints + ". \nIt's time to replenish with food and drink.";
+                String returnMessage = "You have defeated the " + enemy.getShortName() + ". \nYour health is now " + playerHealthPoints + ". \nIt's time to replenish with food and drink.";
 
                 // Deduct health points if attacking with a melee weapon
                 if (!weapon.hasAmmunition) {
@@ -229,72 +171,70 @@ public class Player {
                         currentRoom.removeEnemy(enemy);
                         return returnMessage;
                     }
-
-                    return "You attacked the " + enemy.getType() + ". \nYour health: " + playerHealthPoints + ". \nEnemy's health: " + enemy.getHealthPoints() + ".\n";
-
-                    // Check if the weapon is equipped
-                } else {
-                    if (!weapon.isEquipped()) {
-                        return "You need to equip your weapon with ammunition before you can use it.";
-                    }
-
-                    // Attack with the weapon
-                    else if (weapon.isEquipped() && weapon.getAmountOfAmmo() > 0) {
-                        enemy.reduceHealthPoints(weapon.damage);
-                        weapon.reduceAmmo();
-                        playerHealthPoints -= enemy.getWeapon().damage;
-                        if (enemy.isEnemyDead()) {
-                            currentRoom.removeEnemy(enemy);
-                            return returnMessage;
-                        }
-
-                        return "You attacked the " + enemy.getType() + ". \nRemaining uses of your weapon: " + weapon.getAmountOfAmmo() + ". \nYour health: " + playerHealthPoints + ". \nEnemy's health: " + enemy.getHealthPoints() + ".\n";
-                    }
+                    return "You attacked the " + enemy.getShortName() + ". \nYour health: " + playerHealthPoints + ". \nEnemy's health: " + enemy.getHealthPoints() + ".\n";
                 }
+
+                // Check if the weapon is equipped
+                if (!weapon.isEquipped()) {
+                    return "You need to equip your weapon with ammunition before you can use it.";
+                }
+
+                // Attack with the weapon
+                else if (weapon.isEquipped() && weapon.getAmountOfAmmo() > 0) {
+                    enemy.reduceHealthPoints(weapon.damage);
+                    weapon.reduceAmmo();
+                    playerHealthPoints -= enemy.getWeapon().damage;
+                    if (enemy.isEnemyDead()) {
+                        currentRoom.removeEnemy(enemy);
+                        return returnMessage;
+                    }
+
+                    return "You attacked the " + enemy.getShortName() + ". \nRemaining uses of your weapon: " + weapon.getAmountOfAmmo() + ". \nYour health: " + playerHealthPoints + ". \nEnemy's health: " + enemy.getHealthPoints() + ".\n";
             }
-            return "The " + item.getShortName() + " is not a weapon. You cannot use it for battle";
         }
-        return "You are not ready for battle. First, get yourself a weapon.";
+        return "The " + item.getShortName() + " is not a weapon. You cannot use it for battle";
     }
+        return"You are not ready for battle. First, get yourself a weapon.";
+}
 
-    public String getCurrentRoom() {
-        return currentRoom.getRoomName() + ": " + currentRoom.getRoomDescription();
-    }
+public String getCurrentRoom() {
+    return currentRoom.getRoomName() + ": " + currentRoom.getRoomDescription();
+}
 
-    public String movePlayerNorth() {
-        if (currentRoom.getConnectionNorth() != null) {
-            currentRoom = currentRoom.getConnectionNorth();
-            return getCurrentRoom() + "\n" + question;
-        } else {
-            return wayBlocked;
-        }
+public String movePlayerNorth() {
+    if (currentRoom.getConnectionNorth() != null) {
+        currentRoom = currentRoom.getConnectionNorth();
+        return getCurrentRoom() + "\n" + question;
+    } else {
+        return wayBlocked;
     }
+}
 
-    public String movePlayerEast() {
-        if (currentRoom.getConnectionEast() != null) {
-            currentRoom = currentRoom.getConnectionEast();
-            return getCurrentRoom() + "\n" + question;
-        } else {
-            return wayBlocked;
-        }
+public String movePlayerEast() {
+    if (currentRoom.getConnectionEast() != null) {
+        currentRoom = currentRoom.getConnectionEast();
+        return getCurrentRoom() + "\n" + question;
+    } else {
+        return wayBlocked;
     }
+}
 
-    public String movePlayerWest() {
-        if (currentRoom.getConnectionWest() != null) {
-            currentRoom = currentRoom.getConnectionWest();
-            return getCurrentRoom() + "\n" + question;
-        } else {
-            return wayBlocked;
-        }
+public String movePlayerWest() {
+    if (currentRoom.getConnectionWest() != null) {
+        currentRoom = currentRoom.getConnectionWest();
+        return getCurrentRoom() + "\n" + question;
+    } else {
+        return wayBlocked;
     }
+}
 
-    public String movePlayerSouth() {
-        if (currentRoom.getConnectionSouth() != null) {
-            currentRoom = currentRoom.getConnectionSouth();
-            return getCurrentRoom() + "\n" + question;
-        } else {
-            return wayBlocked;
-        }
+public String movePlayerSouth() {
+    if (currentRoom.getConnectionSouth() != null) {
+        currentRoom = currentRoom.getConnectionSouth();
+        return getCurrentRoom() + "\n" + question;
+    } else {
+        return wayBlocked;
     }
+}
 }
 
