@@ -24,32 +24,38 @@ public class Room {
     }
 
     public String getRoomDescription() {
-        String itemDescription = "";
-        String enemyDescription = "";
         boolean hasItems = !itemsInRoomList.isEmpty();
         boolean hasEnemies = !enemiesInRoomList.isEmpty();
 
+        // Check if the room has any items or enemies
+        if (hasItems && hasEnemies)
+            return roomDescription + "\nThis area contains: " + itemsInRoom() + " & " + enemiesInRoom();
+        if (hasItems) {
+            return roomDescription + "\nThis area contains: " + itemsInRoom();
+        }
+        if (hasEnemies) {
+            return roomDescription + "\nThis area contains: " + enemiesInRoom();
+        }
+        return roomDescription + "\nThis area is empty.";
+    }
+
+    public String itemsInRoom() {
+        String itemDescription = "";
         for (int i = 0; i < itemsInRoomList.size(); i++) {
             itemDescription += itemsInRoomList.get(i).getLongName();
             if (i < itemsInRoomList.size() - 1) {
                 itemDescription += ", ";
             }
-        }
+        } return itemDescription;
+    }
+    public String enemiesInRoom() {
+        String enemyDescription = "";
         for (int i = 0; i < enemiesInRoomList.size(); i++) {
             enemyDescription += enemiesInRoomList.get(i).getType();
             if (i < enemiesInRoomList.size() - 1) {
                 enemyDescription += ", ";
             }
-        }
-        if (hasItems && hasEnemies)
-            return roomDescription + "\nThis area contains: " + itemDescription + " & " + enemyDescription;
-        if (hasItems) {
-            return roomDescription + "\nThis area contains: " + itemDescription;
-        }
-        if (hasEnemies) {
-            return roomDescription + "\nThis area contains: " + enemyDescription;
-        }
-        return roomDescription + "\nThis area is empty.";
+        } return enemyDescription;
     }
 
     public Room getConnectionNorth() {

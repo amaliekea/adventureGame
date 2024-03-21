@@ -66,8 +66,8 @@ public class Map {
         room5.addItem(new Liquid("a healing potion", "healing", 30));
         room2.addItem(new Liquid("a double shot espresso", "espresso", 50));
 
-        room1.addEnemy(new Enemy("Alien", "tall, slender and slimy", 150, new MeleeWeapon("long tentacles with poisonous spikes", "tentacles", 20)));
-        room5.addEnemy(new Enemy("Animal", "tiny, furry and purple", 100, new MeleeWeapon("long, razor sharp claws", "claws", 20)));
+        room1.addEnemy(new Enemy("alien", "tall, slender and slimy", 150, new MeleeWeapon("long tentacles with poisonous spikes", "tentacles", 20)));
+        room5.addEnemy(new Enemy("animal", "tiny, furry and purple", 100, new MeleeWeapon("long, razor sharp claws", "claws", 20)));
 
     }
     public Room getFirstRoom() {
